@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name — Designer & Data Analyst</title>
+
+  <!--
+  ============================================================
+  FONTS
+  — "DM Serif Display" : elegant headline font
+  — "DM Sans"          : clean, readable body font
+  Both are loaded from Google Fonts (no install needed).
+  To swap fonts, change the URL below and update the CSS
+  variables --font-display and --font-body.
+  ============================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS — Edit these to restyle the entire site
+       ============================================================ */
+    :root {
+      --color-bg:        #F7F5F0;   /* Warm off-white background           */
+      --color-surface:   #FFFFFF;   /* Card / section backgrounds          */
+      --color-text:      #1A1A1A;   /* Primary text                        */
+      --color-muted:     #7A7A72;   /* Secondary / caption text            */
+      --color-accent:    #2D6A4F;   /* Brand accent (change to your color) */
+      --color-border:    #E2DED7;   /* Subtle dividers                     */
+
+      --font-display:    'DM Serif Display', serif;
+      --font-body:       'DM Sans', sans-serif;
+
+      --radius:          6px;       /* Corner rounding for cards           */
+      --max-width:       860px;     /* Max content width                   */
+      --section-gap:     120px;     /* Space between sections              */
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ============================================================
+       PAGE LOAD ANIMATION
+       Elements with .reveal animate in on scroll via JS (below).
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAV BAR
+       Fixed at the top; blurs the background on scroll.
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(247, 245, 240, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* — Logo / Name in nav */
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* — Nav links */
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-text); }
+
+    /* ============================================================
+       HERO SECTION
+       Full-screen opening with your name and tagline.
+       ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px; /* offset for fixed nav */
+    }
+    .hero-content {
+      max-width: 680px;
+    }
+
+    /* — Small label above the headline */
+    .hero-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+    }
+
+    /* — Main headline */
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5rem); /* fluid sizing */
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    /* Italic emphasis inside headline */
+    .hero-headline em {
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    /* — Sub-text below headline */
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--color-muted);
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    /* — CTA buttons */
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    /* Filled button */
+    .btn-primary {
+      background: var(--color-text);
+      color: var(--color-bg);
+    }
+    .btn-primary:hover { background: var(--color-accent); }
+
+    /* Outlined button */
+    .btn-secondary {
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+    .btn-secondary:hover { border-color: var(--color-text); }
+
+    /* Decorative horizontal rule under hero */
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--color-accent);
+      margin-top: 64px;
+    }
+
+    /* ============================================================
+       SECTION SHARED STYLES
+       ============================================================ */
+    section {
+      padding: var(--section-gap) 0;
+    }
+
+    /* — Section eyebrow label */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    /* — Section headline */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      margin-bottom: 48px;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       Two-column layout: text left, stats/info right.
+       ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--color-muted);
+      margin-bottom: 16px;
+    }
+    /* — "Currently" highlight block */
+    .about-currently {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 2px solid var(--color-accent);
+      background: var(--color-surface);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .about-currently strong {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 6px;
+    }
+
+    /* — Right column: quick-stat items */
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .stat-item {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================================
+       PROJECTS SECTION
+       Grid of project cards.
+       ============================================================ */
+    #projects { background: var(--color-surface); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    /* — Individual project card */
+    .project-card {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      background: var(--color-bg);
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+    }
+
+    /* — Color thumbnail at top of card (swap with <img> if you have screenshots) */
+    .project-thumb {
+      height: 180px;
+      background: var(--color-border); /* Replace with your image or a gradient */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--color-muted);
+    }
+
+    /* — Card body */
+    .project-body {
+      padding: 24px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--color-border);
+      color: var(--color-muted);
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-bottom: 20px;
+    }
+    .project-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 10px; }
+
+    /* ============================================================
+       SKILLS SECTION
+       Two groups: Design skills and Data skills.
+       ============================================================ */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 24px;
+    }
+
+    /* — Each skill row with a progress bar */
+    .skill-item {
+      margin-bottom: 20px;
+    }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+    }
+    .skill-level {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+    }
+    .skill-bar {
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 2px;
+      width: 0%;              /* Starts at 0; animated via JS on scroll */
+      transition: width 1s ease;
+    }
+
+    /* ============================================================
+       CONTACT SECTION
+       Simple centered layout with email + socials.
+       ============================================================ */
+    #contact {
+      text-align: center;
+    }
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      color: var(--color-accent);
+      display: inline-block;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--color-accent);
+      padding-bottom: 4px;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.7; }
+
+    /* — Social links row */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .social-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--color-text); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================================
+       RESPONSIVE — Tablet & Mobile
+       ============================================================ */
+    @media (max-width: 720px) {
+
+      :root { --section-gap: 80px; }
+
+      /* Stack nav links (optional: hide them on mobile and add a hamburger) */
+      .nav-links { display: none; }
+
+      /* Stack about columns */
+      .about-grid        { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Stack project cards */
+      .projects-grid     { grid-template-columns: 1fr; }
+
+      /* Stack skill columns */
+      .skills-grid       { grid-template-columns: 1fr; gap: 32px; }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV BAR
+       — Update your name in .nav-logo
+       — The links match section IDs below (#about, #projects, etc.)
+       ============================================================ -->
+  <nav id="main-nav">
+    <div class="container nav-inner">
+      <span class="nav-logo">Your Name</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO SECTION
+       — Edit .hero-label, .hero-headline, .hero-sub, and the CTAs
+       — The two <a> buttons link to #projects and #contact
+       ============================================================ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <span class="hero-label reveal">Designer → Data Analyst</span>
+
+        <h1 class="hero-headline reveal">
+          Turning data into<br>
+          <em>clear, beautiful</em><br>
+          stories.
+        </h1>
+
+        <p class="hero-sub reveal">
+          <!-- ✏️ Write 1–2 sentences describing who you are and what you do -->
+          I'm a designer transitioning into data analytics — bridging the gap
+          between insight and communication through clean visuals and thoughtful design.
+        </p>
+
+        <div class="hero-actions reveal">
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="#contact"  class="btn btn-secondary">Get in touch</a>
+        </div>
+
+        <div class="hero-rule reveal"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT SECTION
+       — Left: bio paragraphs + "currently" block
+       — Right: 3 stat items (years exp, tools, etc.)
+       ============================================================ -->
+  <section id="about">
+    <div class="container">
+
+      <p class="section-label reveal">About me</p>
+      <h2 class="section-title reveal">Background & focus</h2>
+
+      <div class="about-grid">
+
+        <!-- LEFT — Bio text -->
+        <div class="about-text reveal">
+          <p>
+            <!-- ✏️ Replace with your own bio paragraph -->
+            I've spent the past [X] years working as a designer, crafting visual
+            experiences for clients across [industries]. Along the way I became
+            obsessed with the stories hidden inside data — and decided to go learn
+            how to find them.
+          </p>
+          <p>
+            <!-- ✏️ Second bio paragraph -->
+            I'm currently studying data analytics, adding SQL, Python, and
+            Tableau to my toolkit so I can design dashboards and reports that
+            are as functional as they are beautiful.
+          </p>
+
+          <!-- "Currently" highlight — update the text inside -->
+          <div class="about-currently">
+            <strong>Currently</strong>
+            <!-- ✏️ e.g. "Completing Google Data Analytics Certificate" -->
+            Completing [your current course / role / project].
+          </div>
+        </div>
+
+        <!-- RIGHT — Stats -->
+        <div class="about-stats reveal">
+
+          <!-- ✏️ Stat 1 — update number and description -->
+          <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div class="stat-desc">Years in design</div>
+          </div>
+
+          <!-- ✏️ Stat 2 -->
+          <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-desc">Client projects delivered</div>
+          </div>
+
+          <!-- ✏️ Stat 3 -->
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-desc">Data tools currently learning</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       — Duplicate a .project-card block to add more projects
+       — Replace .project-thumb emoji with an <img> tag if you have screenshots
+       — Update tags, title, description, and href on each card
+       ============================================================ -->
+  <section id="projects">
+    <div class="container">
+
+      <p class="section-label reveal">Selected work</p>
+      <h2 class="section-title reveal">Projects & case studies</h2>
+
+      <div class="projects-grid">
+
+        <!-- ── PROJECT CARD 1 ── -->
+        <div class="project-card reveal">
+          <!-- ✏️ Replace emoji with: <img src="images/project1.jpg" alt="Project name"> -->
+          <div class="project-thumb">📊</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <!-- ✏️ Add/remove tags to match your tech stack -->
+              <span class="tag">Tableau</span>
+              <span class="tag">Data Viz</span>
+            </div>
+            <!-- ✏️ Project name -->
+            <h3 class="project-title">Sales Dashboard Redesign</h3>
+            <!-- ✏️ 1–2 sentence description -->
+            <p class="project-desc">
+              Redesigned a cluttered sales dashboard into a scannable,
+              executive-friendly report — reducing decision time by 40%.
+            </p>
+            <!-- ✏️ Link to live project, Behance, or case study PDF -->
+            <a href="#" class="project-link">View case study →</a>
+          </div>
+        </div>
+
+        <!-- ── PROJECT CARD 2 ── -->
+        <div class="project-card reveal">
+          <div class="project-thumb">🎨</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">UI Design</span>
+              <span class="tag">Figma</span>
+            </div>
+            <h3 class="project-title">Brand Identity System</h3>
+            <p class="project-desc">
+              Full visual identity for a fintech startup, including logo,
+              type system, color palette, and component library.
+            </p>
+            <a href="#" class="project-link">View case study →</a>
+          </div>
+        </div>
+
+        <!-- ── PROJECT CARD 3 ── -->
+        <div class="project-card reveal">
+          <div class="project-thumb">🔍</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">SQL</span>
+              <span class="tag">Python</span>
+              <span class="tag">Analysis</span>
+            </div>
+            <h3 class="project-title">E-commerce Churn Analysis</h3>
+            <p class="project-desc">
+              Analyzed 3 years of customer data to identify churn patterns
+              and surface actionable retention opportunities.
+            </p>
+            <a href="#" class="project-link">View case study →</a>
+          </div>
+        </div>
+
+        <!-- ── PROJECT CARD 4 ── -->
+        <div class="project-card reveal">
+          <div class="project-thumb">📱</div>
+          <div class="project-body">
+            <div class="project-tags">
+              <span class="tag">UX Research</span>
+              <span class="tag">Prototype</span>
+            </div>
+            <h3 class="project-title">Mobile App UX Overhaul</h3>
+            <p class="project-desc">
+              Led end-to-end UX redesign of a fitness app — improving
+              onboarding completion rate from 52% to 81%.
+            </p>
+            <a href="#" class="project-link">View case study →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS SECTION
+       — Two columns: Design and Data
+       — Each .skill-fill has a data-width attribute (0–100)
+         that controls the bar length — set it to your real level
+       ============================================================ -->
+  <section id="skills">
+    <div class="container">
+
+      <p class="section-label reveal">Capabilities</p>
+      <h2 class="section-title reveal">Skills & tools</h2>
+
+      <div class="skills-grid">
+
+        <!-- LEFT COLUMN — Design skills -->
+        <div class="reveal">
+          <p class="skill-group-title">Design</p>
+
+          <!-- ✏️ Edit skill name, level label, and data-width (0–100) -->
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Figma</span>
+              <span class="skill-level">Expert</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="90"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Adobe Creative Suite</span>
+              <span class="skill-level">Advanced</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>UI / UX Design</span>
+              <span class="skill-level">Advanced</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="85"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Design Systems</span>
+              <span class="skill-level">Proficient</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN — Data skills -->
+        <div class="reveal">
+          <p class="skill-group-title">Data & Analytics</p>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Tableau</span>
+              <span class="skill-level">Proficient</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="70"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>SQL</span>
+              <span class="skill-level">Intermediate</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Python (pandas / matplotlib)</span>
+              <span class="skill-level">Learning</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="40"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Google Sheets / Excel</span>
+              <span class="skill-level">Advanced</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT SECTION
+       — Update the email address in both the href and visible text
+       — Add/remove social links as needed
+       ============================================================ -->
+  <section id="contact">
+    <div class="container">
+
+      <p class="section-label reveal">Let's connect</p>
+      <h2 class="section-title reveal">Get in touch</h2>
+
+      <div class="reveal">
+        <!-- ✏️ Replace with your real email -->
+        <a href="mailto:hello@yourname.com" class="contact-email">
+          hello@yourname.com
+        </a>
+      </div>
+
+      <!-- ✏️ Replace href values with your real profile URLs -->
+      <ul class="social-links reveal">
+        <li><a href="https://linkedin.com/in/yourhandle" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/yourhandle"     target="_blank">GitHub</a></li>
+        <li><a href="https://behance.net/yourhandle"    target="_blank">Behance</a></li>
+        <!-- Add more: Twitter/X, Dribbble, etc. -->
+      </ul>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       — Update your name and year
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <!-- ✏️ Replace "Your Name" and update the year as needed -->
+      <p>© 2025 Your Name. Designed & built by me.</p>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       Three small behaviors:
+       1. Nav background appears after scrolling 40px
+       2. Elements with .reveal animate in as they enter the viewport
+       3. Skill bars animate to their data-width when scrolled into view
+       ============================================================ -->
+  <script>
+
+    // ── 1. Nav scroll effect ──────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+
+    // ── 2. Reveal animation (scroll into view) ────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings slightly for a cascade effect
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+    // ── 3. Skill bar animation ────────────────────────────────────
+    // When a bar scrolls into view, it expands to the % set in data-width
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          fill.style.width = fill.dataset.width + '%';
+          barObserver.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.skill-fill').forEach(bar => barObserver.observe(bar));
+
+  </script>
+
+</body>
+</html>

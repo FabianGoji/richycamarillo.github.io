@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MountainSeed — Lender Portfolio | Your Name</title>
+
+  <!--
+  ============================================================
+  FONTS — Same as index.html, keep in sync if you change them.
+  ============================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS
+       These must stay in sync with index.html — edit both files
+       together if you change any variable here.
+       ============================================================ */
+    :root {
+      --color-bg:        #F7F5F0;
+      --color-surface:   #FFFFFF;
+      --color-text:      #1A1A1A;
+      --color-muted:     #7A7A72;
+      --color-accent:    #2D6A4F;
+      --color-border:    #E2DED7;
+
+      /* Case-study-specific tones */
+      --color-tag-bg:    #EBF0ED;   /* Soft green tint for tags     */
+      --color-tag-text:  #1F4F3A;   /* Deep green tag label         */
+
+      --font-display:    'DM Serif Display', serif;
+      --font-body:       'DM Sans', sans-serif;
+
+      --radius:          6px;
+      --max-width:       760px;     /* Narrower than index for long-form reading */
+      --max-width-wide:  1020px;    /* Used for full-bleed media rows  */
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       LAYOUT HELPERS
+       ============================================================ */
+
+    /* Narrow reading column */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Wide container — used for media rows that bleed wider */
+    .container-wide {
+      max-width: var(--max-width-wide);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATION
+       Same pattern as index.html — JS at the bottom handles it.
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAV BAR
+       Identical behavior to index.html — back arrow + your name.
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(247, 245, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* Back link — takes user back to the portfolio home */
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--color-text); }
+    .nav-back svg   { width: 14px; height: 14px; }
+
+    /* Your name / logo — links back to portfolio home */
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+
+    /* ============================================================
+       HERO — Case study opener
+       ============================================================ */
+    .cs-hero {
+      padding-top: 140px; /* offset for fixed nav */
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* — Breadcrumb label above title */
+    .cs-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+    }
+    .cs-eyebrow span { color: var(--color-border); }
+
+    /* — Main title */
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      max-width: 640px;
+    }
+    .cs-title em {
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    /* — Short summary sentence below title */
+    .cs-summary {
+      font-size: 1.08rem;
+      color: var(--color-muted);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.65;
+    }
+
+    /* — Meta row: role / timeline / company */
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-top: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border);
+    }
+    .cs-meta-item {
+      flex: 1;
+      min-width: 140px;
+      padding: 20px 24px;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .cs-meta-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 6px;
+    }
+    .cs-meta-value {
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       HERO MEDIA — Full-width cover image / placeholder
+       Sits between the hero text and the body content.
+       ============================================================ */
+    .cs-hero-media {
+      margin: 64px 0 0;
+    }
+
+    /* ============================================================
+       CASE STUDY BODY — Shared section spacing
+       ============================================================ */
+    .cs-body {
+      padding: 96px 0;
+    }
+
+    /* Vertical rhythm between sections */
+    .cs-section {
+      margin-bottom: 96px;
+    }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    /* — Section number + label */
+    .cs-section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+    /* Thin accent line beside the label */
+    .cs-section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    /* — Section headline */
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      line-height: 1.18;
+      margin-bottom: 28px;
+    }
+
+    /* — Body prose */
+    .cs-prose p {
+      color: var(--color-muted);
+      margin-bottom: 20px;
+      font-size: 0.97rem;
+    }
+    .cs-prose p:last-child { margin-bottom: 0; }
+
+    /* Inline bold within prose */
+    .cs-prose strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       PULL QUOTE
+       Use to highlight a key insight or decision from the text.
+       ============================================================ */
+    .cs-pullquote {
+      border-left: 2px solid var(--color-accent);
+      padding: 8px 0 8px 28px;
+      margin: 40px 0;
+    }
+    .cs-pullquote p {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      line-height: 1.4;
+      color: var(--color-text) !important;
+      margin: 0 !important;
+    }
+
+    /* ============================================================
+       TAGS — Used to label deliverables, tools, roles etc.
+       ============================================================ */
+    .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .cs-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--color-tag-bg);
+      color: var(--color-tag-text);
+    }
+
+    /* ============================================================
+       NUMBERED LIST — Used for ordered steps, decisions, etc.
+       ============================================================ */
+    .cs-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .cs-list li {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.95rem;
+      color: var(--color-muted);
+    }
+    .cs-list li:first-child { border-top: 1px solid var(--color-border); }
+    .cs-list-num {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+      width: 28px;
+      padding-top: 2px;
+    }
+    .cs-list-text strong {
+      display: block;
+      color: var(--color-text);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* ============================================================
+       MEDIA PLACEHOLDER
+       Replace the entire .cs-media block's inner content with a
+       real <img> or <video> tag when your assets are ready.
+
+       HOW TO SWAP IN A REAL IMAGE:
+         1. Delete everything inside .cs-media-inner
+         2. Add: <img src="images/your-file.jpg" alt="Description">
+
+       HOW TO SWAP IN A VIDEO:
+         1. Delete everything inside .cs-media-inner
+         2. Add: <video src="videos/your-file.mp4" autoplay muted loop playsinline></video>
+       ============================================================ */
+    .cs-media {
+      margin: 48px 0;
+    }
+    /* Wide media — spans the wider container */
+    .cs-media.wide {
+      margin: 48px calc(-1 * (var(--max-width-wide) - var(--max-width)) / 2);
+    }
+
+    .cs-media-inner {
+      background: var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      /* Remove border-radius if you want true edge-to-edge feel */
+    }
+
+    /* Placeholder ratio — change aspect-ratio to suit your content:
+       16/9  = widescreen screenshot
+       4/3   = traditional screen
+       3/2   = photography
+       1/1   = square                                              */
+    .cs-media-inner.ratio-16-9  { aspect-ratio: 16 / 9; }
+    .cs-media-inner.ratio-4-3   { aspect-ratio: 4 / 3;  }
+    .cs-media-inner.ratio-3-2   { aspect-ratio: 3 / 2;  }
+    .cs-media-inner.ratio-tall  { aspect-ratio: 3 / 4;  }
+
+    /* The visible placeholder label — delete this <div class="cs-placeholder"> when adding real media */
+    .cs-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .cs-placeholder svg {
+      width: 28px; height: 28px;
+      opacity: 0.4;
+    }
+
+    /* — Caption below a media block */
+    .cs-media-caption {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       MEDIA GRID — Side-by-side images
+       Add more .cs-media-inner blocks to extend the grid.
+       ============================================================ */
+    .cs-media-grid {
+      display: grid;
+      gap: 16px;
+      margin: 48px 0;
+    }
+    .cs-media-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .cs-media-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    /* ============================================================
+       DIVIDER — Subtle horizontal rule between major sections
+       ============================================================ */
+    .cs-divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 96px 0;
+    }
+
+    /* ============================================================
+       OUTCOME STATS — Highlight key results
+       ============================================================ */
+    .cs-outcomes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border);
+      margin: 40px 0;
+    }
+    .cs-outcome-item {
+      padding: 28px 24px;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .cs-outcome-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--color-accent);
+    }
+    .cs-outcome-desc {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       NEXT PROJECT FOOTER
+       Links to the next case study (or back to portfolio).
+       Update the href and project name as needed.
+       ============================================================ */
+    .cs-next {
+      border-top: 1px solid var(--color-border);
+      padding: 64px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cs-next-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 8px;
+    }
+    .cs-next-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      transition: color 0.2s;
+    }
+    .cs-next-link:hover .cs-next-title { color: var(--color-accent); }
+    .cs-next-arrow {
+      font-size: 1.6rem;
+      color: var(--color-accent);
+      transition: transform 0.2s;
+    }
+    .cs-next-link:hover .cs-next-arrow { transform: translateX(6px); }
+
+    /* ============================================================
+       FOOTER — matches index.html
+       ============================================================ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 720px) {
+      .cs-media-grid.cols-2,
+      .cs-media-grid.cols-3 { grid-template-columns: 1fr; }
+
+      .cs-outcomes           { grid-template-columns: 1fr 1fr; }
+      .cs-meta               { flex-direction: column; }
+
+      .cs-next {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV BAR
+       — .nav-back links to index.html (your portfolio home)
+       — .nav-logo also links home; update "Your Name"
+       ============================================================ -->
+  <nav id="main-nav">
+    <div class="container-wide nav-inner">
+
+      <!-- ✏️ Update href if index.html lives at a different path -->
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 1L3 7L9 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        All work
+      </a>
+
+      <!-- ✏️ Replace "Your Name" -->
+      <a href="index.html" class="nav-logo">Your Name</a>
+
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       CASE STUDY HERO
+       — Update the title, summary, and meta fields below
+       ============================================================ -->
+  <header class="cs-hero">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <div class="cs-eyebrow reveal">
+        Case Study <span>/</span> Internship <span>/</span> 2024
+      </div>
+
+      <!-- ✏️ Headline — feel free to adjust the line break -->
+      <h1 class="cs-title reveal">
+        MountainSeed —<br>
+        <em>Analytics Platform</em><br>
+        Internship
+      </h1>
+
+      <!-- ✏️ One-sentence hook — edit to match your preferred framing -->
+      <p class="cs-summary reveal">
+        Designing a Lender Portfolio feature from scratch — bringing bank
+        credit analysts and loan officers into a commercial real estate
+        analytics platform for the first time.
+      </p>
+
+      <!-- Project metadata row -->
+      <div class="cs-meta reveal">
+
+        <!-- ✏️ Update each value -->
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Company</div>
+          <div class="cs-meta-value">MountainSeed</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Role</div>
+          <div class="cs-meta-value">Product Design Intern</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Duration</div>
+          <div class="cs-meta-value">2 Months</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Scope</div>
+          <div class="cs-meta-value">Research · Flows · Wireframes · Prototype · Handoff</div>
+        </div>
+
+      </div>
+
+      <!-- ============================================================
+           HERO MEDIA — Main cover image / screenshot
+           ✏️ Replace placeholder with:
+             <img src="images/ms-cover.jpg" alt="Lender Portfolio overview">
+           ============================================================ -->
+      <div class="cs-hero-media reveal">
+        <div class="cs-media-inner ratio-16-9">
+          <div class="cs-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Cover image — full portfolio overview screen
+          </div>
+        </div>
+        <p class="cs-media-caption">Lender Portfolio — final prototype overview</p>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       CASE STUDY BODY
+       Sections follow the narrative arc:
+         01 Context       — What is MountainSeed, why this project?
+         02 Research       — Learning CRE, appraisals, lender roles
+         03 Define         — Requirements, workflows, target users
+         04 Design         — Iterations: sketches → wireframes → hi-fi
+         05 Data Viz       — The ongoing visualization thread
+         06 Handoff        — Final prototype, dev support, QA
+       ============================================================ -->
+  <main class="cs-body">
+    <div class="container">
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           01 — CONTEXT
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">01 — Context</div>
+        <h2 class="cs-section-title">Expanding an analytics platform to reach bank lenders</h2>
+
+        <div class="cs-prose">
+          <p>
+            MountainSeed is an appraisal management and analytics platform built
+            for commercial real estate professionals. When I joined for a two-month
+            internship, the product team was planning a significant expansion:
+            extending the analytics platform to reach <strong>bank lenders</strong> —
+            a new user type with distinct workflows and expectations.
+          </p>
+          <p>
+            The project was called the <strong>"Lender Portfolio"</strong>. The goal
+            was to give portfolio managers, credit analysts, and loan officers a
+            consolidated space to manage and analyze their collateral properties —
+            something that, until now, the platform had not offered.
+          </p>
+        </div>
+
+        <div class="cs-pullquote">
+          <p>"Give lenders a consolidated space for collateral properties and the
+          data visualizations that communicate the metrics that inform strategy,
+          append reports, and support ongoing loan inquiries."</p>
+        </div>
+
+        <!-- Tags: the disciplines / tools involved -->
+        <div class="cs-tags">
+          <span class="cs-tag">Figma</span>
+          <span class="cs-tag">UX Research</span>
+          <span class="cs-tag">Information Architecture</span>
+          <span class="cs-tag">Data Visualization</span>
+          <span class="cs-tag">Wireframing</span>
+          <span class="cs-tag">Prototyping</span>
+          <span class="cs-tag">Design Handoff</span>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           02 — RESEARCH
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">02 — Research</div>
+        <h2 class="cs-section-title">Building fluency in a completely new domain</h2>
+
+        <div class="cs-prose">
+          <p>
+            Walking into a Fintech company with no background in commercial real
+            estate or appraisal management meant a steep learning curve before any
+            design work could begin. Research wasn't just a phase — it was a
+            continuous thread throughout the entire project.
+          </p>
+          <p>
+            The first priority was establishing CRE fundamentals, with a particular
+            emphasis on the role of appraisers, appraisals, and the life cycle of a
+            commercial loan. This combined external reading with internal deep-dives
+            into historical artifacts and studies MountainSeed had already conducted.
+          </p>
+        </div>
+
+        <!-- Numbered list: research sources -->
+        <ul class="cs-list">
+          <li>
+            <span class="cs-list-num">1</span>
+            <div class="cs-list-text">
+              <strong>Public CRE market reports & appraisal documents</strong>
+              Commercial and residential appraisals, market reports, and industry
+              literature to establish foundational CRE context.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">2</span>
+            <div class="cs-list-text">
+              <strong>Internal interview recordings & usability test transcripts</strong>
+              Prior sessions conducted by the analytics team that surfaced lender
+              behaviors, pain points, and mental models.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">3</span>
+            <div class="cs-list-text">
+              <strong>Internal lender study reports</strong>
+              Research compiled by the team on the lender user type — attitudes,
+              end goals, and behaviors relevant to product design.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">4</span>
+            <div class="cs-list-text">
+              <strong>Meeting with Product Manager Rosha Caines</strong>
+              A structured session to learn the evolution of analytics at
+              MountainSeed, the lender user type, and the current product vision —
+              prepared with targeted questions in advance.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">5</span>
+            <div class="cs-list-text">
+              <strong>Lender role breakdown from mentor Bethany Stolle</strong>
+              A comprehensive reference document on bank lender roles that informed
+              design decisions throughout the entire project lifecycle.
+            </div>
+          </li>
+        </ul>
+
+        <!-- ✏️ MEDIA: Insert a photo, research board screenshot, or affinity map here -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Research artifacts — notes, source materials, or affinity map
+            </div>
+          </div>
+          <p class="cs-media-caption">Research phase — source materials and internal study documents</p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           03 — DEFINE
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">03 — Define</div>
+        <h2 class="cs-section-title">Scoping the feature and selecting target users</h2>
+
+        <div class="cs-prose">
+          <p>
+            With a solid foundation in the domain, the next step was translating
+            research into a concrete design direction. Working with Bethany and
+            Rosha, we defined the feature requirements, identified key workflows,
+            and decided which lender roles to target first.
+          </p>
+        </div>
+
+        <div class="cs-pullquote">
+          <p>
+            "Credit analysts were primary — their workflows aligned most closely
+            with existing appraiser tools and opened up MountainSeed's assets
+            in an original, lucrative way."
+          </p>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            Two roles were selected: <strong>Credit Analysts</strong> as primary,
+            and <strong>Loan Officers / Relationship Bankers</strong> as secondary.
+            Credit analysts surfaced the most compelling overlap with appraiser
+            workflows, while loan officers had clearer, more defined needs that
+            could be faithfully served without additional exploration.
+          </p>
+          <p>
+            Research pointed to three things the portfolio tab needed to provide:
+            <strong>comparative market analysis</strong>,
+            <strong>collateral properties analysis</strong>, and
+            <strong>property organization and accessibility</strong>.
+            Seven use-case scenarios were written — two designated as key scenarios
+            — giving the team a narrative grounding for every major design decision.
+          </p>
+        </div>
+
+        <!-- Three portfolio pillars -->
+        <ul class="cs-list">
+          <li>
+            <span class="cs-list-num">A</span>
+            <div class="cs-list-text">
+              <strong>Comparative Market Analysis</strong>
+              Visualizations generated from MountainSeed's proprietary data,
+              showing collateral properties in the context of the surrounding
+              market — providing insight into trends, density, and relative position.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">B</span>
+            <div class="cs-list-text">
+              <strong>Collateral Properties Analysis</strong>
+              Portfolio-level metrics and charts providing insight into a bank's
+              own property performance — informing strategy and supporting ongoing
+              loan inquiries.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">C</span>
+            <div class="cs-list-text">
+              <strong>Property Organization & Accessibility</strong>
+              A searchable, filterable, sortable property system that gives lenders
+              fast, precise discovery and access to any collateral record.
+            </div>
+          </li>
+        </ul>
+
+        <!-- ✏️ MEDIA: User flow diagram, use-case scenario doc, or whiteboard photo -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Use-case scenarios / flowcharts
+            </div>
+          </div>
+          <p class="cs-media-caption">Use-case scenario writing and key workflow flowcharts</p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           04 — DESIGN
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">04 — Design</div>
+        <h2 class="cs-section-title">From hand-drawn sketches to high-fidelity prototype</h2>
+
+        <div class="cs-prose">
+          <p>
+            Design began with <strong>hand-drawn sketches</strong> — a deliberate
+            choice to keep early exploration fast and low-commitment. Sketching
+            multiple interface variations for each flow made it easy to test
+            information architecture ideas without getting attached to visual polish.
+          </p>
+          <p>
+            Moving into Figma, the first wireframe iteration kept fidelity low while
+            referencing MountainSeed's existing element styles to maintain brand
+            consistency. The layout placed all three portfolio pillars — map, data
+            analysis, and properties — in a single consolidated space, with a shared
+            filter set that applied across all three simultaneously.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Two sketches or lo-fi wireframe screenshots side by side -->
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Hand-drawn sketch — early layout exploration
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Lo-fi wireframe — first Figma iteration
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Left: hand-drawn sketch exploration · Right: first lo-fi Figma iteration</p>
+
+        <div class="cs-prose" style="margin-top: 40px;">
+          <p>
+            Weekly syncs with the analytics team — spanning Technology, Data Ops,
+            and Project Management — kept design tightly coupled to what was
+            feasible and what the data could actually support. Each week brought
+            new findings, which meant continuous iteration.
+          </p>
+          <p>
+            The final high-fidelity prototype brought together the confirmed
+            visualizations, an updated properties table reflecting the latest
+            data availability, and two new additions: a <strong>record flagging
+            system</strong> with a side-sheet ticket queue, and an
+            <strong>inquiry request workflow</strong> with error-state messaging
+            for data visibility limits. A card-view alternative to the default
+            table format was also produced.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA: Final hi-fi screen or prototype flow -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Final hi-fi prototype — full portfolio screen
+            </div>
+          </div>
+          <p class="cs-media-caption">Final high-fidelity prototype — Lender Portfolio overview</p>
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Properties table + card view side by side -->
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Properties — default table view
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Properties — card view
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Default table view (left) and card view alternative (right)</p>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           05 — DATA VISUALIZATION
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">05 — Data Visualization</div>
+        <h2 class="cs-section-title">A design thread that ran the full project lifecycle</h2>
+
+        <div class="cs-prose">
+          <p>
+            Data visualization wasn't a single deliverable — it was an ongoing
+            problem that evolved as the team learned more about what was technically
+            possible. Defining the right charts required fluency in three overlapping
+            areas: <strong>data analytics principles</strong>,
+            <strong>visualization tool capabilities</strong>, and
+            <strong>MountainSeed's available property data</strong>.
+          </p>
+          <p>
+            I met with Data Ops to understand what data existed, how it was
+            structured, and what calculations it could support. I cross-referenced
+            this against public data analytics principles and the documentation for
+            the team's chosen visualization technology to identify a viable set of
+            visual types. These were documented and reported to the team — a living
+            reference that was revised as tech capabilities became clearer week by week.
+          </p>
+        </div>
+
+        <div class="cs-pullquote">
+          <p>
+            "The challenge wasn't what to visualize — it was identifying which
+            visualizations could be faithfully produced with our data and our tools,
+            without overpromising."
+          </p>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            The conclusion was a set of visualizations illustrating
+            <strong>trends</strong>, <strong>distribution</strong>, and
+            <strong>density</strong> — each tied directly to a data type
+            MountainSeed could reliably extract. A known challenge was that
+            different banks value different metrics, making a universal default
+            layout nearly impossible without customization — a problem flagged
+            explicitly for future iterations.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Three visualization screens or chart explorations -->
+        <div class="cs-media-grid cols-3 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Trend visualization
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Distribution chart
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Geo density map
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Visualization explorations — trend, distribution, and geo density</p>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           06 — HANDOFF & SUPPORT
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">06 — Handoff & Support</div>
+        <h2 class="cs-section-title">From prototype to production — a shift into a support role</h2>
+
+        <div class="cs-prose">
+          <p>
+            Once the prototype screens were finalized, the role shifted from leading
+            design to supporting development. This meant being available for
+            developer inquiries, providing revised specs when element dimensions or
+            spacing needed adjustment during implementation, and rigorously
+            testing implemented pages as soon as they were available.
+          </p>
+          <p>
+            QA findings were documented in structured reports — organized by area,
+            date, and sub-section — with explicit notes even for areas that passed
+            review, to demonstrate thoroughness to the project manager. The goal
+            was always easy digestion: a developer or PM should be able to open a
+            document and immediately find what they need.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA: Redline specs, QA doc screenshot, or implemented page -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Redline / spec handoff or implemented page screenshot
+            </div>
+          </div>
+          <p class="cs-media-caption">Design handoff — redline annotations and implementation review</p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           REFLECTIONS — Optional closer
+           ✏️ Add or remove this section depending on preference
+           ══════════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">Reflections</div>
+        <h2 class="cs-section-title">What I took away</h2>
+
+        <div class="cs-prose">
+          <p>
+            This internship compressed a full product design lifecycle into two
+            months — research, definition, ideation, wireframing, hi-fi design,
+            prototyping, and production support. Working in a fast-moving Fintech
+            environment with a cross-functional team taught me how to stay
+            grounded in user needs while continuously adapting to technical and
+            business constraints.
+          </p>
+          <p>
+            The most valuable skill I built was knowing when to push for clarity
+            and when to design for ambiguity — particularly around data
+            visualization, where the gap between what's desirable and what's
+            producible is constantly shifting.
+          </p>
+          <!-- ✏️ Add a personal reflection sentence or two here -->
+        </div>
+
+      </section>
+
+
+    </div><!-- /container -->
+  </main>
+
+
+  <!-- ============================================================
+       NEXT PROJECT FOOTER
+       — Update href to your next case study file
+       — Update the project name
+       ============================================================ -->
+  <div class="container">
+    <div class="cs-next reveal">
+      <div>
+        <p class="cs-next-label">Next project</p>
+        <!-- ✏️ Update href and project name -->
+        <a href="#" class="cs-next-link">
+          <p class="cs-next-title">Your Next Case Study →</p>
+        </a>
+      </div>
+      <!-- ✏️ Or link back to portfolio if this is the only case study -->
+      <a href="index.html" class="btn" style="
+        display:inline-block;
+        padding: 12px 24px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: var(--color-muted);
+        transition: all 0.2s;
+      ">← Back to all work</a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER — matches index.html
+       ✏️ Update your name
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Your Name. Designed & built by me.</p>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       Same reveal + nav scroll behavior as index.html.
+       ============================================================ -->
+  <script>
+
+    // ── Nav scroll effect ─────────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── Scroll reveal ─────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  </script>
+
+</body>
+</html>
