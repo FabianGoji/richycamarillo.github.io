@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ladle — Recipe & Cooking App | Your Name</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS — Keep in sync with all other pages
+       ============================================================ */
+    :root {
+      --color-bg:        #F7F5F0;
+      --color-surface:   #FFFFFF;
+      --color-text:      #1A1A1A;
+      --color-muted:     #7A7A72;
+      --color-accent:    #2D6A4F;
+      --color-border:    #E2DED7;
+      --color-tag-bg:    #EBF0ED;
+      --color-tag-text:  #1F4F3A;
+      --font-display:    'DM Serif Display', serif;
+      --font-body:       'DM Sans', sans-serif;
+      --radius:          6px;
+      --max-width:       760px;
+      --max-width-wide:  1020px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      background: var(--color-bg); color: var(--color-text);
+      font-family: var(--font-body); font-weight: 300;
+      font-size: 16px; line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container      { max-width: var(--max-width);      margin: 0 auto; padding: 0 32px; }
+    .container-wide { max-width: var(--max-width-wide); margin: 0 auto; padding: 0 32px; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: background 0.3s; }
+    nav.scrolled { background: rgba(247,245,240,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo  { font-family: var(--font-display); font-size: 1.05rem; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); transition: color 0.2s; }
+    .nav-links a:hover  { color: var(--color-text); }
+    .nav-links a.active { color: var(--color-accent); }
+
+    /* ── HERO ── */
+    .cs-hero { padding-top: 140px; padding-bottom: 80px; border-bottom: 1px solid var(--color-border); }
+    .cs-eyebrow { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 20px; }
+    .cs-eyebrow span { color: var(--color-border); }
+    .cs-title { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 24px; max-width: 640px; }
+    .cs-title em { font-style: italic; color: var(--color-accent); }
+    .cs-summary { font-size: 1.08rem; color: var(--color-muted); max-width: 560px; margin-bottom: 48px; line-height: 1.65; }
+    .cs-meta { display: flex; flex-wrap: wrap; border-top: 1px solid var(--color-border); border-left: 1px solid var(--color-border); }
+    .cs-meta-item { flex: 1; min-width: 140px; padding: 20px 24px; border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .cs-meta-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 6px; }
+    .cs-meta-value { font-size: 0.92rem; }
+    .cs-hero-media { margin: 64px 0 0; }
+
+    /* ── BODY ── */
+    .cs-body    { padding: 96px 0; }
+    .cs-section { margin-bottom: 96px; }
+    .cs-section:last-child { margin-bottom: 0; }
+    .cs-section-label { display: flex; align-items: center; gap: 12px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px; }
+    .cs-section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--color-accent); flex-shrink: 0; }
+    .cs-section-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem); line-height: 1.18; margin-bottom: 28px; }
+    .cs-prose p { color: var(--color-muted); margin-bottom: 20px; font-size: 0.97rem; }
+    .cs-prose p:last-child { margin-bottom: 0; }
+    .cs-prose strong { color: var(--color-text); font-weight: 500; }
+
+    /* ── PULL QUOTE ── */
+    .cs-pullquote { border-left: 2px solid var(--color-accent); padding: 8px 0 8px 28px; margin: 40px 0; }
+    .cs-pullquote p { font-family: var(--font-display); font-size: clamp(1.15rem, 2.5vw, 1.5rem); line-height: 1.4; color: var(--color-text) !important; margin: 0 !important; }
+
+    /* ── TAGS ── */
+    .cs-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+    .cs-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; background: var(--color-tag-bg); color: var(--color-tag-text); }
+
+    /* ── GDD PHASES LIST
+       Each GDD phase in its own row.
+       ✏️ Add or remove .phase-item blocks as needed.
+    ── */
+    .gdd-phases { margin-top: 32px; }
+    .phase-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--color-border);
+      align-items: start;
+    }
+    .phase-item:first-child { border-top: 1px solid var(--color-border); }
+    .phase-name { font-size: 0.88rem; font-weight: 500; color: var(--color-text); padding-top: 2px; }
+    .phase-desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.65; }
+
+    /* ── HONEST MOMENT — highlighted callout block for the scope drift section ── */
+    .cs-honest {
+      margin: 40px 0;
+      padding: 28px 32px;
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+    }
+    .cs-honest-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+    .cs-honest p {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .cs-honest p:last-child { margin-bottom: 0; }
+    .cs-honest strong { color: var(--color-text); font-weight: 500; }
+
+    /* ── MEDIA ── */
+    .cs-media         { margin: 48px 0; }
+    .cs-media-inner   { background: var(--color-border); border-radius: var(--radius); overflow: hidden; }
+    .cs-media-inner.ratio-16-9 { aspect-ratio: 16 / 9; }
+    .cs-media-inner.ratio-4-3  { aspect-ratio: 4 / 3;  }
+    .cs-placeholder { width: 100%; height: 100%; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--color-muted); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .cs-placeholder svg { width: 28px; height: 28px; opacity: 0.4; }
+    .cs-media-caption { margin-top: 12px; font-size: 0.8rem; color: var(--color-muted); text-align: center; }
+    .cs-media-grid        { display: grid; gap: 16px; margin: 48px 0; }
+    .cs-media-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+
+    /* ── FOOTER NAV ── */
+    .cs-footer-nav { border-top: 1px solid var(--color-border); padding: 64px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cs-footer-nav-item { display: flex; flex-direction: column; gap: 8px; }
+    .cs-footer-nav-item.next { text-align: right; align-items: flex-end; }
+    .cs-footer-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted); }
+    .cs-footer-title { font-family: var(--font-display); font-size: 1.3rem; transition: color 0.2s; }
+    .cs-footer-nav-item a:hover .cs-footer-title { color: var(--color-accent); }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.8rem; color: var(--color-muted); }
+
+    @media (max-width: 720px) {
+      .nav-links              { display: none; }
+      .phase-item             { grid-template-columns: 1fr; gap: 8px; }
+      .cs-media-grid.cols-2   { grid-template-columns: 1fr; }
+      .cs-footer-nav          { grid-template-columns: 1fr; }
+      .cs-footer-nav-item.next { text-align: left; align-items: flex-start; }
+      .cs-meta                { flex-direction: column; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV BAR
+       ✏️ Update "Your Name" and add nav links as pages are added
+       ============================================================ -->
+  <nav id="main-nav">
+    <div class="container-wide nav-inner">
+      <a href="index.html" class="nav-logo">Your Name</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Work</a></li>
+        <li><a href="kiwi.html">Kiwi</a></li>
+        <li><a href="fyr.html">FYR</a></li>
+        <li><a href="ladle.html" class="active">Ladle</a></li>
+        <li><a href="mountainseed.html">MountainSeed</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <header class="cs-hero">
+    <div class="container">
+
+      <div class="cs-eyebrow reveal">
+        Case Study <span>/</span> UX Design <span>/</span> Team Project
+      </div>
+
+      <h1 class="cs-title reveal">
+        Ladle —<br>
+        <em>Cooking Motivation</em><br>
+        App Design
+      </h1>
+
+      <p class="cs-summary reveal">
+        A recipe and cooking motivation app designed for young adults using
+        Goal-Directed Design — and an honest account of what happens when
+        scope grows faster than a first project can handle it.
+      </p>
+
+      <div class="cs-meta reveal">
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Type</div>
+          <div class="cs-meta-value">Team Project — Lead Designer</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Methodology</div>
+          <div class="cs-meta-value">Goal-Directed Design</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Tools</div>
+          <div class="cs-meta-value">Figma</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Scope</div>
+          <div class="cs-meta-value">Research · Personas · Framework · Prototyping</div>
+        </div>
+      </div>
+
+      <!-- ✏️ Replace placeholder with your cover image -->
+      <div class="cs-hero-media reveal">
+        <div class="cs-media-inner ratio-16-9">
+          <div class="cs-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Cover image — Ladle app overview
+          </div>
+        </div>
+        <p class="cs-media-caption">Ladle — final prototype overview</p>
+      </div>
+
+    </div>
+  </header>
+
+
+  <main class="cs-body">
+    <div class="container">
+
+
+      <!-- ══════════════════════════════════════════════════════
+           01 — THE PROBLEM
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">01 — The Problem</div>
+        <h2 class="cs-section-title">Young adults want to cook — the barrier isn't recipes</h2>
+
+        <div class="cs-prose">
+          <p>
+            Young adults in transition — moving out for the first time, adjusting
+            to tighter budgets, managing their own schedules — often lack both the
+            cooking experience and the motivation to develop it. The problem isn't
+            a shortage of recipes online. It's that existing tools assume a baseline
+            of knowledge and confidence that many young adults simply don't have.
+          </p>
+          <p>
+            Ladle was designed to meet users where they are, not where the internet
+            assumes they are. The core question was: what does an app look like when
+            it treats cooking confidence as the primary product, not recipe delivery?
+          </p>
+        </div>
+
+        <div class="cs-pullquote">
+          <p>"The problem isn't access to recipes — it's confidence, motivation,
+          and not knowing what to do with what's already in the kitchen."</p>
+        </div>
+
+        <div class="cs-tags">
+          <span class="cs-tag">Goal-Directed Design</span>
+          <span class="cs-tag">UX Research</span>
+          <span class="cs-tag">Persona Development</span>
+          <span class="cs-tag">Figma</span>
+          <span class="cs-tag">Prototyping</span>
+          <span class="cs-tag">Team Lead</span>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           02 — GOAL-DIRECTED DESIGN
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">02 — Methodology</div>
+        <h2 class="cs-section-title">Goal-Directed Design — grounding decisions in user goals</h2>
+
+        <div class="cs-prose">
+          <p>
+            Goal-Directed Design, developed by Alan Cooper, is a methodology that
+            grounds every design decision in a deep understanding of the user's
+            goals, behaviors, and motivations — rather than starting from features
+            or technology. The process moves through five phases, each building
+            on the last.
+          </p>
+          <p>
+            As team lead, I was responsible for driving the GDD process, facilitating
+            research synthesis, defining the design framework, and keeping the team's
+            work connected to the original user goals throughout. We completed all
+            phases with the exception of cross-departmental knowledge transfer —
+            which applies to production handoff in a real product context and
+            was not applicable in an academic setting.
+          </p>
+        </div>
+
+        <!-- GDD phases list
+             ✏️ Edit phase names and descriptions to reflect your actual work -->
+        <div class="gdd-phases">
+
+          <div class="phase-item">
+            <div class="phase-name">Research</div>
+            <div class="phase-desc">
+              Investigating user behaviors, goals, and motivations through primary
+              and secondary research. This phase produced the raw material for
+              persona development and identified the core problem space.
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-name">Modeling</div>
+            <div class="phase-desc">
+              Synthesizing research into behavioral personas — representing the
+              distinct user types and their goals, frustrations, and mental models.
+              Personas grounded in research, not assumptions.
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-name">Requirements Definition</div>
+            <div class="phase-desc">
+              Translating persona goals into design requirements — identifying
+              what the product must do to serve each user type. This phase
+              connected user research directly to design decisions.
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-name">Framework Design</div>
+            <div class="phase-desc">
+              Defining the overall structure of the product — information
+              architecture, interaction patterns, and the core feature set —
+              mapped directly to user goals rather than assumed functionality.
+            </div>
+          </div>
+
+          <div class="phase-item">
+            <div class="phase-name">Refinement</div>
+            <div class="phase-desc">
+              Iterating on the framework with increasing fidelity — moving from
+              wireframes toward a prototype, resolving layout, interaction, and
+              visual design decisions.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Persona + requirements or wireframe screenshots -->
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Persona — primary user type
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Framework — early wireframes
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Persona development (left) · Framework wireframes (right)</p>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           03 — WHERE FOCUS DRIFTED
+           Uses the .cs-honest callout block — a distinct visual
+           treatment to signal self-aware reflection
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">03 — Where Focus Drifted</div>
+        <h2 class="cs-section-title">An honest account of scope drift</h2>
+
+        <div class="cs-prose">
+          <p>
+            Ladle started with a clear and specific target user — young adults with
+            low cooking experience and motivation. As the project progressed, the
+            team tried to accommodate a broader audience, and the scope expanded
+            beyond what the core feature set could faithfully serve. The result was
+            a weaker main tool — a product that tried to speak to everyone and ended
+            up being less precise for anyone.
+          </p>
+        </div>
+
+        <!-- Honest callout block — use for frank retrospective moments -->
+        <div class="cs-honest">
+          <div class="cs-honest-label">Retrospective</div>
+          <p>
+            It was my first project leading a team through a rigorous methodology,
+            and the lesson was hard-earned: <strong>a focused problem statement is
+            not a limitation — it's a foundation.</strong> Without it, every
+            subsequent design decision becomes harder to defend, and the methodology
+            itself loses its anchor.
+          </p>
+          <p>
+            Goal-Directed Design gave us the right process. What I'd do differently
+            is hold the scope boundaries more firmly, earlier — and use the
+            methodology's own outputs (the personas, the scenarios, the requirements)
+            as the check against any feature or audience expansion that threatened
+            to dilute the original user focus.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA: Final prototype screens -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Final prototype — key screens
+            </div>
+          </div>
+          <p class="cs-media-caption">Ladle — final prototype screens</p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           REFLECTIONS
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">Reflections</div>
+        <h2 class="cs-section-title">What I carried forward</h2>
+
+        <div class="cs-prose">
+          <p>
+            Ladle taught me more than any project where everything went according
+            to plan. The experience of watching a well-defined problem gradually
+            dilute under scope pressure — and not catching it soon enough — is
+            something I've carried into every project since.
+          </p>
+          <p>
+            Using Goal-Directed Design as a methodology was a genuine strength.
+            GDD is a rigorous framework and knowing how to apply it — even
+            imperfectly on a first attempt — builds a kind of design thinking that
+            doesn't come from easier projects. The retrospective is where Ladle
+            earns its place in this portfolio: not as a polished outcome, but as
+            the project that most clearly shaped how I work now.
+          </p>
+          <p>
+            It was my first project. It won't be my last chance to get it right.
+          </p>
+        </div>
+
+      </section>
+
+
+    </div>
+  </main>
+
+
+  <!-- ============================================================
+       CASE STUDY FOOTER NAV
+       ✏️ Update hrefs and titles as your project set grows
+       ============================================================ -->
+  <div class="container">
+    <div class="cs-footer-nav reveal">
+      <div class="cs-footer-nav-item prev">
+        <span class="cs-footer-label">← Previous</span>
+        <a href="fyr.html">
+          <p class="cs-footer-title">Find Your Ride</p>
+        </a>
+      </div>
+      <div class="cs-footer-nav-item next">
+        <span class="cs-footer-label">Next →</span>
+        <a href="mountainseed.html">
+          <p class="cs-footer-title">MountainSeed</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Your Name. Designed & built by me.</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

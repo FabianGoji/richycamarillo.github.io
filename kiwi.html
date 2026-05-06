@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kiwi — AR Navigation | Your Name</title>
+
+  <!--
+  ============================================================
+  FONTS — Same as index.html. Keep in sync if you change them.
+  ============================================================
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ============================================================
+       DESIGN TOKENS — Keep in sync with index.html & all case study pages
+       ============================================================ */
+    :root {
+      --color-bg:        #F7F5F0;
+      --color-surface:   #FFFFFF;
+      --color-text:      #1A1A1A;
+      --color-muted:     #7A7A72;
+      --color-accent:    #2D6A4F;
+      --color-border:    #E2DED7;
+      --color-tag-bg:    #EBF0ED;
+      --color-tag-text:  #1F4F3A;
+
+      --font-display:    'DM Serif Display', serif;
+      --font-body:       'DM Sans', sans-serif;
+
+      --radius:          6px;
+      --max-width:       760px;
+      --max-width-wide:  1020px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html  { scroll-behavior: smooth; }
+    body  {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container      { max-width: var(--max-width);      margin: 0 auto; padding: 0 32px; }
+    .container-wide { max-width: var(--max-width-wide); margin: 0 auto; padding: 0 32px; }
+
+    /* ============================================================
+       SCROLL REVEAL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       NAV BAR
+       — Fixed; links to all case study pages + home
+       — .active marks the current page
+       ✏️ Add more <li> items as you add more case study pages
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(247, 245, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo  { font-family: var(--font-display); font-size: 1.05rem; }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover  { color: var(--color-text); }
+    .nav-links a.active { color: var(--color-accent); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .cs-hero { padding-top: 140px; padding-bottom: 80px; border-bottom: 1px solid var(--color-border); }
+    .cs-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--color-accent); margin-bottom: 20px;
+    }
+    .cs-eyebrow span { color: var(--color-border); }
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.08; letter-spacing: -0.01em;
+      margin-bottom: 24px; max-width: 640px;
+    }
+    .cs-title em { font-style: italic; color: var(--color-accent); }
+    .cs-summary {
+      font-size: 1.08rem; color: var(--color-muted);
+      max-width: 560px; margin-bottom: 48px; line-height: 1.65;
+    }
+    .cs-meta {
+      display: flex; flex-wrap: wrap;
+      border-top: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border);
+    }
+    .cs-meta-item {
+      flex: 1; min-width: 140px; padding: 20px 24px;
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .cs-meta-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--color-muted); margin-bottom: 6px;
+    }
+    .cs-meta-value { font-size: 0.92rem; }
+    .cs-hero-media { margin: 64px 0 0; }
+
+    /* ============================================================
+       BODY SECTIONS
+       ============================================================ */
+    .cs-body    { padding: 96px 0; }
+    .cs-section { margin-bottom: 96px; }
+    .cs-section:last-child { margin-bottom: 0; }
+
+    .cs-section-label {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--color-accent); margin-bottom: 16px;
+    }
+    .cs-section-label::before {
+      content: ''; display: block; width: 24px; height: 1px;
+      background: var(--color-accent); flex-shrink: 0;
+    }
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      line-height: 1.18; margin-bottom: 28px;
+    }
+    .cs-prose p { color: var(--color-muted); margin-bottom: 20px; font-size: 0.97rem; }
+    .cs-prose p:last-child { margin-bottom: 0; }
+    .cs-prose strong { color: var(--color-text); font-weight: 500; }
+
+    /* ============================================================
+       PULL QUOTE
+       ============================================================ */
+    .cs-pullquote { border-left: 2px solid var(--color-accent); padding: 8px 0 8px 28px; margin: 40px 0; }
+    .cs-pullquote p {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      line-height: 1.4; color: var(--color-text) !important; margin: 0 !important;
+    }
+
+    /* ============================================================
+       TAGS
+       ============================================================ */
+    .cs-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+    .cs-tag {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 6px 14px;
+      border-radius: 100px; background: var(--color-tag-bg); color: var(--color-tag-text);
+    }
+
+    /* ============================================================
+       LEAN UX CANVAS — Two-column: image left, accordion right
+       ============================================================ */
+    .canvas-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    /* Each accordion item */
+    .canvas-accordion     { display: flex; flex-direction: column; }
+    .accordion-item       { border-bottom: 1px solid var(--color-border); }
+    .accordion-item:first-child { border-top: 1px solid var(--color-border); }
+
+    /* — Trigger: always visible — number + name + chevron */
+    .accordion-trigger {
+      width: 100%; display: flex; justify-content: space-between;
+      align-items: center; padding: 14px 0;
+      background: none; border: none; cursor: pointer; text-align: left; gap: 12px;
+    }
+    .accordion-trigger-left { display: flex; align-items: center; gap: 14px; }
+    .accordion-num  { font-family: var(--font-display); font-size: 0.95rem; color: var(--color-accent); flex-shrink: 0; min-width: 24px; }
+    .accordion-name { font-size: 0.85rem; font-weight: 500; color: var(--color-text); }
+
+    /* — Chevron rotates when open */
+    .accordion-chevron { width: 15px; height: 15px; flex-shrink: 0; color: var(--color-muted); transition: transform 0.25s ease; }
+    .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+
+    /* — Collapsible panel */
+    .accordion-panel  { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .accordion-item.open .accordion-panel { max-height: 300px; }
+    .accordion-content {
+      padding: 0 0 14px 38px; /* indent aligns with name text */
+      font-size: 0.87rem; color: var(--color-muted); line-height: 1.65;
+    }
+
+    /* ============================================================
+       MEDIA PLACEHOLDERS
+       ✏️ To swap in a real image:
+         1. Delete <div class="cs-placeholder">...</div>
+         2. Add:  <img src="images/filename.jpg" alt="Description">
+       ============================================================ */
+    .cs-media         { margin: 48px 0; }
+    .cs-media-inner   { background: var(--color-border); border-radius: var(--radius); overflow: hidden; }
+    .cs-media-inner.ratio-16-9 { aspect-ratio: 16 / 9; }
+    .cs-media-inner.ratio-4-3  { aspect-ratio: 4 / 3;  }
+
+    /* Canvas image gets a fixed min-height since it sits in a grid */
+    .canvas-image .cs-media-inner { min-height: 340px; }
+
+    .cs-placeholder {
+      width: 100%; height: 100%; min-height: 180px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: var(--color-muted);
+      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .cs-placeholder svg { width: 28px; height: 28px; opacity: 0.4; }
+    .cs-media-caption { margin-top: 12px; font-size: 0.8rem; color: var(--color-muted); text-align: center; }
+
+    .cs-media-grid        { display: grid; gap: 16px; margin: 48px 0; }
+    .cs-media-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+
+    /* ============================================================
+       CASE STUDY FOOTER NAV
+       — Links to prev/next case studies
+       — No homepage link needed (nav bar handles it)
+       ✏️ Update hrefs and titles to match your file names
+       ============================================================ */
+    .cs-footer-nav {
+      border-top: 1px solid var(--color-border);
+      padding: 64px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cs-footer-nav-item        { display: flex; flex-direction: column; gap: 8px; }
+    .cs-footer-nav-item.next   { text-align: right; align-items: flex-end; }
+    .cs-footer-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-muted); }
+    .cs-footer-title { font-family: var(--font-display); font-size: 1.3rem; transition: color 0.2s; }
+    .cs-footer-nav-item a:hover .cs-footer-title { color: var(--color-accent); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer { padding: 40px 0; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.8rem; color: var(--color-muted); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 720px) {
+      .nav-links            { display: none; }
+      .canvas-layout        { grid-template-columns: 1fr; }
+      .cs-media-grid.cols-2 { grid-template-columns: 1fr; }
+      .cs-footer-nav        { grid-template-columns: 1fr; }
+      .cs-footer-nav-item.next { text-align: left; align-items: flex-start; }
+      .cs-meta              { flex-direction: column; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV BAR
+       ✏️ Update "Your Name" and add more nav links as you
+          complete more case study pages
+       ============================================================ -->
+  <nav id="main-nav">
+    <div class="container-wide nav-inner">
+      <a href="index.html" class="nav-logo">Your Name</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Work</a></li>
+        <li><a href="kiwi.html" class="active">Kiwi</a></li>
+        <li><a href="fyr.html">FYR</a></li>
+        <li><a href="ladle.html">Ladle</a></li>
+        <li><a href="mountainseed.html">MountainSeed</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <header class="cs-hero">
+    <div class="container">
+
+      <div class="cs-eyebrow reveal">
+        Case Study <span>/</span> AR App <span>/</span> Team Project
+      </div>
+
+      <h1 class="cs-title reveal">
+        Kiwi —<br>
+        <em>AR Navigation</em><br>
+        for Airports
+      </h1>
+
+      <p class="cs-summary reveal">
+        Designing an augmented reality airport companion — enabling wayfinding,
+        object recognition, staff assistance requests, and live ticket information
+        in a single AR-native interface.
+      </p>
+
+      <div class="cs-meta reveal">
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Course</div>
+          <div class="cs-meta-value">Interaction Design 2 — Prof. Michael Lahey</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Type</div>
+          <div class="cs-meta-value">Team Project</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Platform</div>
+          <div class="cs-meta-value">AR OS — Apple HIG Reference</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Scope</div>
+          <div class="cs-meta-value">Research · Usability Testing · Prototyping · Brand</div>
+        </div>
+      </div>
+
+      <!-- ✏️ Replace placeholder with your cover image -->
+      <div class="cs-hero-media reveal">
+        <div class="cs-media-inner ratio-16-9">
+          <div class="cs-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Cover image — Kiwi app overview
+          </div>
+        </div>
+        <p class="cs-media-caption">Kiwi — final prototype overview</p>
+      </div>
+
+    </div>
+  </header>
+
+
+  <main class="cs-body">
+    <div class="container">
+
+
+      <!-- ══════════════════════════════════════════════════════
+           01 — CONTEXT
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">01 — Context</div>
+        <h2 class="cs-section-title">An AR companion for one of travel's most stressful environments</h2>
+
+        <div class="cs-prose">
+          <p>
+            Kiwi is an augmented reality airport navigation app designed for
+            Interaction Design 2 at Kennesaw State University, taught by Professor
+            Michael Lahey. Built as a team project for an AR operating system,
+            Apple's Human Interface Guidelines informed our visual design decisions
+            throughout — grounding the work in an established system rather than
+            inventing conventions from scratch.
+          </p>
+          <p>
+            Airports are high-complexity, high-stress environments. Passengers
+            routinely struggle to navigate terminals, interpret signage, locate
+            gates, and find help quickly — especially in unfamiliar airports under
+            time pressure. Kiwi was designed to reduce that friction by putting
+            <strong>wayfinding</strong>, <strong>object recognition</strong>,
+            <strong>staff assistance requests</strong>, and <strong>live maps
+            and ticket information</strong> into a single AR-native interface that
+            responds to the user's physical environment in real time.
+          </p>
+        </div>
+
+        <div class="cs-pullquote">
+          <p>"The airport is already a designed environment — Kiwi had to layer
+          on top of it without adding to the noise."</p>
+        </div>
+
+        <div class="cs-tags">
+          <span class="cs-tag">AR Design</span>
+          <span class="cs-tag">Apple HIG</span>
+          <span class="cs-tag">Interaction Design</span>
+          <span class="cs-tag">Usability Testing</span>
+          <span class="cs-tag">Lean UX</span>
+          <span class="cs-tag">Figma</span>
+          <span class="cs-tag">Prototyping</span>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           02 — LEAN UX CANVAS
+           Two-column layout: image left, accordion right.
+           JS at the bottom controls open/close behavior.
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">02 — Process Foundation</div>
+        <h2 class="cs-section-title">Lean UX Canvas — structuring the problem before designing the solution</h2>
+
+        <div class="cs-prose">
+          <p>
+            Before any design work began, the team used a Lean UX Canvas to establish
+            shared alignment on the problem space. The canvas forced us to articulate
+            business outcomes, user types, success metrics, and hypotheses before
+            touching Figma — ensuring every design decision was grounded in clearly
+            stated assumptions rather than intuition alone.
+          </p>
+        </div>
+
+        <div class="canvas-layout">
+
+          <!-- LEFT — Canvas image placeholder -->
+          <!-- ✏️ Replace with: <img src="images/lean-ux-canvas.jpg" alt="Lean UX Canvas"> -->
+          <div class="canvas-image">
+            <div class="cs-media-inner">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Lean UX Canvas artifact
+              </div>
+            </div>
+            <p class="cs-media-caption">Completed Lean UX Canvas — Kiwi</p>
+          </div>
+
+          <!-- RIGHT — Accordion list
+               One item open at a time — JS handles this.
+               Each item shows: number + name always.
+               Definition revealed on click.
+          -->
+          <div class="canvas-accordion" id="lux-accordion">
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#1</span>
+                  <span class="accordion-name">Business Problem</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Forming a product problem statement by identifying current issues
+                  and opportunities in the product domain.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#2</span>
+                  <span class="accordion-name">Business Outcomes</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Determine 'success' metrics by identifying what behaviors and actions
+                  (outcomes) will lead to the desired result (impact).
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#3</span>
+                  <span class="accordion-name">Users</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Infer what type of users and customers we should be focusing on;
+                  formulating proto-personas.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#4</span>
+                  <span class="accordion-name">User Outcomes & Benefits</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  State what incentives, benefits, and behavioral changes upon goal
+                  achievement our users would have with the product.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#5</span>
+                  <span class="accordion-name">Solutions</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Seek ideas for product creation, feature, or enhancement that will
+                  meet the needs of the user and the business.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#6</span>
+                  <span class="accordion-name">Hypotheses</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Combine projected business outcomes, user types, user benefits, and
+                  solutions into individualized assumption statements to understand
+                  the risk associated with each design plan or change.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#7</span>
+                  <span class="accordion-name">Most Important Things to Learn</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Organize hypotheses according to risk level and the value of the
+                  proposed solution — prioritizing what to validate first.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <div class="accordion-trigger-left">
+                  <span class="accordion-num">#8</span>
+                  <span class="accordion-name">Least Amount of Work to Learn the Most</span>
+                </div>
+                <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-content">
+                  Planning designs that require the least fidelity and resources to
+                  create, yet can still validate hypotheses — minimizing waste before
+                  committing to production.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /canvas-accordion -->
+        </div><!-- /canvas-layout -->
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           03 — SPRINT 1
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">03 — Sprint 1</div>
+        <h2 class="cs-section-title">Mapping the core experience</h2>
+
+        <div class="cs-prose">
+          <p>
+            Sprint 1 focused on establishing Kiwi's foundational flows: wayfinding,
+            object recognition, and the assistance request system. Research into
+            airport user behavior, AR interaction patterns, and Apple's Human
+            Interface Guidelines formed the starting point — grounding early
+            decisions in an established design system rather than convention-free
+            invention.
+          </p>
+          <p>
+            My contributions centered on general research into AR UX patterns and
+            airport navigation behavior, moderating two of the team's usability test
+            sessions, and observing and recording notes across all sessions. Getting
+            into a testing environment early — before designs were high-fidelity —
+            meant assumptions were being validated while they were still cheap to change.
+          </p>
+          <p>
+            The central design challenges of Sprint 1 were <strong>AR overlay
+            density</strong> — how much information could live in the camera view
+            without overwhelming the user — and <strong>persistent UI placement</strong>,
+            ensuring core controls stayed accessible without occluding the physical
+            environment the user was navigating through.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Two Sprint 1 screens side by side -->
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Sprint 1 — wayfinding flow
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Sprint 1 — assistance request flow
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Sprint 1 — wayfinding (left) and assistance request system (right)</p>
+
+        <div class="cs-prose" style="margin-top: 40px;">
+          <p>
+            <strong>Sprint 1 Retrospective —</strong> Usability testing surfaced
+            two consistent gaps: the information hierarchy broke down in AR context
+            when multiple overlays competed for attention, and several flows assumed
+            too much interface familiarity for a first-time user in a live airport
+            environment. Both became primary targets for Sprint 2.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           04 — SPRINT 2
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">04 — Sprint 2</div>
+        <h2 class="cs-section-title">Refining for real-world use</h2>
+
+        <div class="cs-prose">
+          <p>
+            Sprint 2 responded directly to the retrospective findings. Flows were
+            simplified, the assistance request system was made more prominent and
+            immediately accessible, and maps and ticket information were integrated
+            more naturally into the wayfinding context — rather than treated as
+            separate destinations requiring additional navigation steps.
+          </p>
+          <p>
+            My primary contribution in Sprint 2 was prototyping the <strong>maps
+            experience</strong> — designing both the visual elements and the
+            interaction flow for how a user transitions from the live AR camera
+            view into a schematic terminal map and back. I also contributed to
+            defining Kiwi's brand style, which drew from Apple's design language:
+            clean surfaces, high contrast for legibility across varied lighting
+            conditions, and a restrained color system that wouldn't compete with
+            the live camera environment.
+          </p>
+          <p>
+            Apple's HIG addresses AR-specific legibility constraints explicitly,
+            and applying those guidelines pushed us toward higher contrast ratios
+            and simpler iconography than our initial designs assumed — a refinement
+            that testing in the second sprint validated.
+          </p>
+        </div>
+
+        <!-- ✏️ MEDIA: Final hi-fi prototype screen -->
+        <div class="cs-media reveal">
+          <div class="cs-media-inner ratio-16-9">
+            <div class="cs-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              Sprint 2 — final hi-fi prototype
+            </div>
+          </div>
+          <p class="cs-media-caption">Sprint 2 — final prototype screens</p>
+        </div>
+
+        <!-- ✏️ MEDIA GRID: Maps prototype + brand style -->
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Maps experience prototype
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cs-media-inner ratio-4-3">
+              <div class="cs-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                Brand style — color, type, components
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-media-caption">Maps experience (left) · Brand style reference (right)</p>
+
+        <div class="cs-prose" style="margin-top: 40px;">
+          <p>
+            <strong>Sprint 2 Retrospective —</strong> The second retrospective
+            examined what remained unresolved within the academic timeline —
+            primarily the object recognition flow, which would benefit from
+            another iteration with more detailed edge-case testing, and the
+            assistance request system, which would need live network integration
+            to validate in a real airport environment. Both are areas I'd
+            prioritize in a third sprint.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           05 — REFLECTIONS
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section reveal">
+
+        <div class="cs-section-label">Reflections</div>
+        <h2 class="cs-section-title">What designing for AR taught me</h2>
+
+        <div class="cs-prose">
+          <p>
+            Designing for AR introduced constraints I hadn't encountered before —
+            legibility in a live camera environment, the relationship between digital
+            overlays and physical space, and designing interactions for a user whose
+            hands and attention are already occupied navigating a terminal. Standard
+            UI design frameworks don't fully prepare you for any of those.
+          </p>
+          <p>
+            Apple's HIG gave us a rigorous starting point, but applying established
+            guidelines to a specific AR context required interpretive decisions the
+            documentation couldn't make for us. That gap between a design system and
+            a particular use case is where the most interesting design thinking
+            happens — and Kiwi put me directly in it.
+          </p>
+          <p>
+            Moderating and observing usability tests at the pace of a two-sprint
+            project also sharpened how I structure observation notes and translate
+            findings into actionable design changes quickly. The feedback loop
+            between testing and iteration was the most valuable part of the process.
+          </p>
+        </div>
+
+      </section>
+
+
+    </div><!-- /container -->
+  </main>
+
+
+  <!-- ============================================================
+       CASE STUDY FOOTER NAV
+       ✏️ Update hrefs and project titles as your file set grows
+       ============================================================ -->
+  <div class="container">
+    <div class="cs-footer-nav reveal">
+      <div class="cs-footer-nav-item prev">
+        <span class="cs-footer-label">← Previous</span>
+        <a href="mountainseed.html">
+          <p class="cs-footer-title">MountainSeed</p>
+        </a>
+      </div>
+      <div class="cs-footer-nav-item next">
+        <span class="cs-footer-label">Next →</span>
+        <a href="fyr.html">
+          <p class="cs-footer-title">Find Your Ride</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER
+       ✏️ Update your name
+       ============================================================ -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Your Name. Designed & built by me.</p>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       1. Nav scroll effect
+       2. Scroll reveal
+       3. Lean UX Canvas accordion — one item open at a time
+       ============================================================ -->
+  <script>
+
+    // ── 1. Nav scroll ─────────────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── 2. Scroll reveal ──────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── 3. Accordion — one item open at a time ────────────────────
+    // Clicking an open item closes it.
+    // Clicking a closed item closes any open one, then opens it.
+    const items = document.querySelectorAll('#lux-accordion .accordion-item');
+    items.forEach(item => {
+      item.querySelector('.accordion-trigger').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Close all
+        items.forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked item if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          item.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+  </script>
+
+</body>
+</html>
