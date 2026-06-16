@@ -873,25 +873,7 @@
   <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    GLightbox();
-
-    document.querySelectorAll('.cs-carousel').forEach(carousel => {
-      const slides = carousel.querySelectorAll('.cs-carousel-slide');
-      const dots   = carousel.querySelectorAll('.cs-carousel-dot');
-      const prev   = carousel.querySelector('.cs-carousel-prev');
-      const next   = carousel.querySelector('.cs-carousel-next');
-      let current  = 0;
-
-      function goTo(index) {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('active', i === current));
-        dots.forEach((d, i) => d.classList.toggle('active', i === current));
-      }
-
-      prev.addEventListener('click', e => { e.preventDefault(); goTo(current - 1); });
-      next.addEventListener('click', e => { e.preventDefault(); goTo(current + 1); });
-      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    });
+    const lightbox = GLightbox({ selector: '.glightbox' });
   </script>
 
 </body>
