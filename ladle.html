@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ladle — Cooking Motivation App | Your Name</title>
+  <title>Ladle — Cooking Motivation App | Richy Camarillo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
   <!-- ============================================================
        NAV BAR
-       ✏️ Update "Your Name"
-       ✏️ .active marks the current page
        ============================================================ -->
   <nav id="main-nav">
     <div class="container-wide nav-inner">
-      <a href="index.html" class="nav-logo">Your Name</a>
+      <a href="index.html" class="nav-logo">Richy Camarillo</a>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
-        <li><a href="index.html">Work</a></li>
-        <li><a href="kiwi.html">Kiwi</a></li>
-        <li><a href="fyr.html">FYR</a></li>
-        <li><a href="ladle.html" class="active">Ladle</a></li>
         <li><a href="mountainseed.html">MountainSeed</a></li>
+        <li><a href="kiwi.html">Kiwi</a></li>
+        <li><a href="ladle.html" class="active">Ladle</a></li>
+        <li><a href="assets/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
       </ul>
     </div>
   </nav>
@@ -73,15 +76,18 @@
         </div>
       </div>
 
-      <!-- ✏️ Replace placeholder with your cover image -->
-      <div class="cs-hero-media reveal">
-        <div class="cs-media-inner ratio-16-9">
-          <div class="cs-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            Cover image — Ladle app overview
+      <div class="content-link">
+        <a href="https://www.figma.com/proto/gukNRgGfdfY6aMKQiWD04K/Team-Camarillo---Ladle-Prototype?node-id=1-49&p=f&viewport=-1731%2C-4104%2C0.42&t=1Oqx2RMfILmCwvfw-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A49&show-proto-sidebar=1&page-id=0%3A1" class="btn btn-secondary">View Prototype</a>
+      </div>
+
+      <div class="cs-media reveal">
+        <div>
+          <div id="no-border" class="cs-media-inner">
+            <a class="glightbox" href="assets/ladle/mockrocket-capture.png">
+              <img src="assets/ladle/mockrocket-capture.png" alt="mockup ladle UI" style="width: 100%;">
+            </a>
           </div>
         </div>
-        <p class="cs-media-caption">Ladle — final prototype overview</p>
       </div>
 
     </div>
@@ -91,6 +97,47 @@
   <main class="cs-body">
     <div class="container">
 
+      <!---------------------------------------------------------- 
+        Executive summary
+      -------------------------------------------------------------->
+      <section class="cs-section">
+
+        <div class="cs-section-label">Executive Summary</div>
+        <h2 class="cs-section-title">Project at a glance, for those short on time</h2>
+
+        <div class="cs-prose">
+          <p>
+            <em>Below is a high-level overview of the problem, the core product strategy, and the final outcomes.</em>
+          </p>
+        </div>
+        <br>
+
+        <div class="cs-prose">
+          <p>
+            Ladle is a high-fidelity iOS prototype for a recipe exploration and discovery
+            app, built over three months for the Interaction Design 1 course at Kennesaw
+            State University. The project began with a two-minute class pitch — I used
+            narrative storytelling to convey how hard it is to eat well and affordably as a
+            student — and after the idea was chosen, I became team lead for a group of four.
+          </p>
+          <p>
+            As lead, I guided three classmates through a modified Goal-Directed Design
+            process, coordinating both the work and the people across the project's full
+            lifecycle: from a hypothetical kickoff and user research, into modeling and
+            design, then through usability testing into a refined second iteration. The
+            result is Ladle — a prototype that brings structure to meal planning and
+            motivates healthier eating habits.
+          </p>
+          <p>
+            The most valuable lesson came from a shift in focus during our second iteration:
+            we broadened our scope beyond the structured, personalized core we had validated
+            in testing. This attempt to have a wider audience dilluted the experience. It taught
+            me that managing scale through phased rollouts is critical to securing growth
+            without risking high-effort, unverified features.
+          </p>
+        </div>
+
+      </section>
 
       <!-- ══════════════════════════════════════════════════════
            01 — THE PROBLEM
@@ -105,19 +152,20 @@
             Young adults in transition — moving out for the first time, adjusting
             to tighter budgets, managing their own schedules — often lack both the
             cooking experience and the motivation to develop it. The problem isn't
-            a shortage of recipes online. It's that existing tools assume a baseline
-            of knowledge and confidence that many young adults simply don't have.
+            a shortage of accessible or inclusive recipes. It's that existing tools 
+            assume a baseline of culinary familiarity and do not inspire people to
+            cook - they are designed to meet them when motivation is already set
           </p>
           <p>
-            Ladle was designed to meet users where they are, not where the internet
-            assumes they are. The core question was: what does an app look like when
+            Ladle was designed to meet users where they are, and motivate people to 
+            explore. The core question was: what does an app look like when
             it treats cooking confidence as the primary product, not recipe delivery?
           </p>
         </div>
 
         <div class="cs-pullquote">
           <p>"The problem isn't access to recipes — it's confidence, motivation,
-          and not knowing what to do with what's already in the kitchen."</p>
+          and experimenting without breaking the bank."</p>
         </div>
 
         <div class="cs-tags">
@@ -133,8 +181,7 @@
 
 
       <!-- ══════════════════════════════════════════════════════
-           02 — GOAL-DIRECTED DESIGN
-           ✏️ Edit phase descriptions to reflect your actual work
+           02 — METHODOLOGY
            ══════════════════════════════════════════════════════ -->
       <section class="cs-section reveal">
 
@@ -149,17 +196,17 @@
             process moves through five phases, each building on the last.
           </p>
           <p>
-            As team lead, I was responsible for driving the GDD process, facilitating
-            research synthesis, defining the design framework, and keeping the team's
-            work connected to the original user goals throughout. We completed all
-            phases with the exception of cross-departmental knowledge transfer —
-            which applies to production handoff in a real product context and was
-            not applicable in an academic setting.
+            We completed every phase except the final support stage, which covers
+            production handoff in a real product context and didn't apply in an
+            academic setting.
+          </p>
+          <p>
+            Below I have detailed the goal and tasks included in each phase, and
+            provided examples of Ladle artifacts from each.
           </p>
         </div>
 
-        <!-- GDD phases list
-             ✏️ Edit phase names and descriptions to reflect your work -->
+        <!-- GDD phases list -->
         <div class="gdd-phases">
 
           <div class="phase-item">
@@ -169,6 +216,14 @@
               and secondary research. This phase produced the raw material for
               persona development and identified the core problem space.
             </div>
+            <div>
+                  <div class="cs-media-inner">
+                    <a class="glightbox" href="assets/ladle/competitve-audit-tasty.png">
+                      <img src="assets/ladle/competitve-audit-tasty.png" alt="competitive audit tasty">
+                    </a>
+                  </div>
+                  <p class="cs-media-caption">Competitive audit of Tasty mobile app</p>
+              </div>
           </div>
 
           <div class="phase-item">
@@ -178,6 +233,14 @@
               user types and their goals, frustrations, and mental models.
               Personas grounded in research, not assumptions.
             </div>
+             <div>
+                  <div class="cs-media-inner">
+                    <a class="glightbox" href="assets/ladle/synthesized-persona-characteristics.png">
+                      <img src="assets/ladle/synthesized-persona-characteristics.png" alt="synthesied persona characteristics">
+                    </a>
+                  </div>
+                  <p class="cs-media-caption">Sytnhesized person characteristics</p>
+              </div>
           </div>
 
           <div class="phase-item">
@@ -186,6 +249,14 @@
               Translating persona goals into design requirements — identifying what
               the product must do to serve each user type. This phase connected
               user research directly to design decisions.
+            </div>
+            <div>
+              <div class="cs-media-inner">
+                    <a class="glightbox" href="assets/ladle/persona-expectations.png">
+                      <img src="assets/ladle/persona-expectations.png" alt="persona expectaions">
+                    </a>
+              </div>
+              <p class="cs-media-caption">Finalized persona expectations, categorized under data functional</p>
             </div>
           </div>
 
@@ -196,6 +267,14 @@
               architecture, interaction patterns, and the core feature set —
               mapped directly to user goals rather than assumed functionality.
             </div>
+            <div>
+              <div class="cs-media-inner">
+                    <a class="glightbox" href="assets/ladle/wireframe.png">
+                      <img src="assets/ladle/wireframe.png" alt="Wireframe with key and validation scenarios">
+                    </a>
+              </div>
+              <p class="cs-media-caption">Wireframe with key path and validation scenarios</p>
+            </div>
           </div>
 
           <div class="phase-item">
@@ -205,49 +284,97 @@
               wireframes toward a prototype, resolving layout, interaction, and
               visual design decisions.
             </div>
-          </div>
-
-        </div>
-
-        <div class="cs-media-grid cols-2 reveal">
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Persona — primary user type
+            <div>
+              <div class="cs-media-inner">
+                    <a class="glightbox" href="assets/ladle/post-usability-test-notes.png">
+                      <img src="assets/ladle/post-usability-test-notes.png" alt="Refinment tasks following usability tests">
+                    </a>
               </div>
+              <p class="cs-media-caption">Refinment tasks identified by each memeber</p>
             </div>
           </div>
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Framework — early wireframes
-              </div>
-            </div>
-          </div>
+
+        </div><br><br>
+
+        <div class="cs-prose">
+          <p>
+            If you want to see the adapted GDD process in full, you can view the Figjam space for my team below.
+          </p>
         </div>
-        <p class="cs-media-caption">Persona development (left) · Framework wireframes (right)</p>
+
+        <div class="content-link">
+          <a href="https://www.figma.com/board/gKh45AUfAD4mS6gINRj7XR/Team-Camarillo-FigJam-Workspace?node-id=0-1&t=VLvV9Yxhu6IJqPkL-1" class="btn btn-secondary">View Figjam Board</a>
+        </div>
 
       </section>
 
 
       <!-- ══════════════════════════════════════════════════════
-           03 — WHERE FOCUS DRIFTED
-           Uses .cs-honest callout for the retrospective moment.
+           03 — THE DESIGN PROCESS
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section">
+
+        <div class="cs-section-label">03 — The Design Process</div>
+        <h2 class="cs-section-title">Taking Ladle from an idea to a user-centered design</h2>
+
+        <div class="cs-prose">
+          <p>
+            With the problem framed and no real stakeholders to consult, we worked through
+            Goal-Directed Design beginning from a hypothetical kickoff that stood in for the
+            usual stakeholder alignment. My job was less about owning screens than keeping
+            four people in sync and anchored to our user goals — and that began with how we
+            ran research. To cover more ground without overloading anyone, I split the team
+            into pairs and staggered the work: one pair started the literature review while
+            the other began the competitive audit, then we switched, so both tracks ran in
+            parallel at a sustainable pace.
+          </p>
+          <p>
+            For the competitive audit, I gave the team a Nielsen Norman Group source on
+            usability heuristics so we could judge BuzzFeed Tasty, Kitchen Stories, and
+            MyFridgeFood against consistent criteria. We then ran five ethnographic
+            interviews with people who fit our user type, and I led the team through affinity
+            mapping in FigJam — each member synthesizing independently before we consolidated
+            everything into shared, categorized insights.
+          </p>
+          <p>
+            In modeling, we mapped behavioral variables onto continua, placed each interview
+            subject along them, and looked for consistent clusters. Two clear patterns
+            emerged and became our personas — Joel Jackson, our primary, and Emily Myth, our
+            secondary. To close the phase, we produced a research report. I spearheaded the 
+            research synthesis by centralizing our team’s research artifacts and designing 
+            the report layout. Beyond structuring the document and aligning team sections, I 
+            took full ownership of authoring the executive summary, introduction, 
+            user-research insights, and final conclusion.
+          </p>
+          <p>
+            From the personas we wrote expectations, then a context scenario tracing Joel's
+            day with the app, which gave us our design requirements — the objects, actions,
+            and contexts the product had to support. Those requirements drove the build. We
+            sketched screens by hand to set our key-path and validation scenarios and
+            prioritize what to design first, moved them into wireframes in FigJam, and built
+            the prototype collaboratively in Figma, dividing screens across the team and
+            reviewing them together.
+          </p>
+        </div>
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           04 — WHERE FOCUS DRIFTED
            ══════════════════════════════════════════════════════ -->
       <section class="cs-section reveal">
 
-        <div class="cs-section-label">03 — Where Focus Drifted</div>
+        <div class="cs-section-label">04 — Where Focus Drifted</div>
         <h2 class="cs-section-title">An honest account of scope drift</h2>
 
         <div class="cs-prose">
           <p>
-            Ladle started with a clear and specific target user — young adults with
-            low cooking experience and motivation. As the project progressed, the
-            team tried to accommodate a broader audience, and the scope expanded
-            beyond what the core feature set could faithfully serve. The result was
-            a weaker main tool — a product that tried to speak to everyone and ended
+            Ladle started with a clear target user — young adults with
+            low cooking experience and motivation. We recognized a common pain
+            with having structure and personalized culinary exploration. As the 
+            project progressed, the team saw opportnities to address more pain points, 
+            and the scope expanded beyond what the core feature set could faithfully serve. 
+            The result was a weaker main tool — a product that tried to speak to everyone and ended
             up being less precise for anyone.
           </p>
         </div>
@@ -256,11 +383,9 @@
         <div class="cs-honest">
           <div class="cs-honest-label">Retrospective</div>
           <p>
-            It was my first project leading a team through a rigorous methodology,
-            and the lesson was hard-earned: <strong>a focused problem statement is
-            not a limitation — it's a foundation.</strong> Without it, every
-            subsequent design decision becomes harder to defend, and the methodology
-            itself loses its anchor.
+            <strong>a focused problem statement is not a limitation — it's a 
+              foundation.</strong> Without it, every subsequent design decision becomes harder 
+              to defend, and the methodology itself loses its anchor.
           </p>
           <p>
             Goal-Directed Design gave us the right process. What I'd do differently
@@ -269,17 +394,6 @@
             as the check against any feature or audience expansion that threatened
             to dilute the original user focus.
           </p>
-        </div>
-
-        <!-- ✏️ Replace placeholder with final prototype screenshots -->
-        <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Final prototype — key screens
-            </div>
-          </div>
-          <p class="cs-media-caption">Ladle — final prototype screens</p>
         </div>
 
       </section>
@@ -295,23 +409,66 @@
 
         <div class="cs-prose">
           <p>
-            Ladle taught me more than any project where everything went according
-            to plan. The experience of watching a well-defined problem gradually
+            The experience of watching a well-defined problem gradually
             dilute under scope pressure — and not catching it soon enough — is
             something I've carried into every project since.
           </p>
           <p>
-            Using Goal-Directed Design as a methodology was a genuine strength.
-            GDD is a rigorous framework and knowing how to apply it — even
-            imperfectly on a first attempt — builds a kind of design thinking that
-            doesn't come from easier projects. The retrospective is where Ladle
-            earns its place in this portfolio: not as a polished outcome, but as
-            the project that most clearly shaped how I work now.
+            Using Goal-Directed Design as a methodology was a challenge, especially 
+            since it was the first time applying it. It is a rigorous framework, but 
+            knowing how to use GDD builds resilient, proof-driven type of design 
+            thinking. The retrospective is where Ladle earns its place in this 
+            portfolio: not as a polished outcome, but as the project that most 
+            clearly shaped how I work now.
           </p>
           <p>
-            It was my first project. It won't be my last chance to get it right.
+            I will provide a link to the prototype below. 
+            If you do not wish to experience the prototype, select screens will be shared as well.
           </p>
         </div>
+
+        <div class="content-link">
+          <a href="https://www.figma.com/proto/gukNRgGfdfY6aMKQiWD04K/Team-Camarillo---Ladle-Prototype?node-id=1-49&p=f&viewport=-1731%2C-4104%2C0.42&t=1Oqx2RMfILmCwvfw-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A49&show-proto-sidebar=1&page-id=0%3A1" class="btn btn-secondary">View Prototype</a>
+        </div>
+
+        <div class="cs-media-grid cols-3">
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/home-page.png">
+                <img src="assets/ladle/final-prototype-screens/home-page.png" alt="ladle, final proto - home page">
+              </a>
+          </div>
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/Recipe-Smoked-Sausage-Skillet.png">
+                <img src="assets/ladle/final-prototype-screens/Recipe-Smoked-Sausage-Skillet.png" alt="ladle, final proto - smoked sausage skillet recipe">
+              </a>
+          </div>
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/calendar-note-added.png">
+                <img src="assets/ladle/final-prototype-screens/calendar-note-added.png" alt="ladle, final proto - calendar">
+              </a>
+          </div>
+        </div>
+        <p class="cs-media-caption"> final prototype screens (left to right) - home, recipe example, calendar </p>
+
+        <div class="cs-media-grid cols-3">
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/profile-activity.png">
+                <img src="assets/ladle/final-prototype-screens/profile-activity.png" alt="ladle, final proto - profile activity">
+              </a>
+          </div>
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/Search-filter-window-open.png">
+                <img src="assets/ladle/final-prototype-screens/Search-filter-window-open.png" alt="ladle, final proto - search page with open fitler window">
+              </a>
+          </div>
+          <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/ladle/final-prototype-screens/grocery-list.png">
+                <img src="assets/ladle/final-prototype-screens/grocery-list.png" alt="ladle, final proto - grocery list">
+              </a>
+          </div>
+        </div>
+        <p class="cs-media-caption"> final prototype screens (left to right) - profile "activity", search with fitler window open, grocery list </p>
+
 
       </section>
 
@@ -324,8 +481,8 @@
     <div class="cs-footer-nav reveal">
       <div class="cs-footer-nav-item prev">
         <span class="cs-footer-label">← Previous</span>
-        <a href="fyr.html">
-          <p class="cs-footer-title">Find Your Ride</p>
+        <a href="kiwi.html">
+          <p class="cs-footer-title">Kiwi</p>
         </a>
       </div>
       <div class="cs-footer-nav-item next">
@@ -339,11 +496,15 @@
 
   <footer>
     <div class="container">
-      <p>© 2025 Your Name. Designed & built by me.</p>
+      <p>© 2025 Richy Camarillo. Designed & built by me.</p>
     </div>
   </footer>
 
   <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({ selector: '.glightbox' });
+  </script>
 
 </body>
 </html>

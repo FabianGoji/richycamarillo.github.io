@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name — Designer & Data Analyst</title>
+  <title>Richy Camarillo — Interaction Designer</title>
 
   <!--
   ============================================================
   FONT — Be Vietnam Pro from Google Fonts.
-  ✏️ To change the font:
-     1. Replace this <link> with a new Google Fonts URL
-     2. Update --font-display and --font-body in styles.css
   ============================================================
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,17 +21,22 @@
 
   <!-- ============================================================
        NAV BAR
-       ✏️ Update "Your Name"
-       ✏️ Links match section IDs below (#about, #projects, etc.)
+       Links match section IDs below (#about, #projects, etc.)
        ============================================================ -->
   <nav id="main-nav">
     <div class="container-wide nav-inner">
-      <a href="index.html" class="nav-logo">Your Name</a>
+      <a href="index.html" class="nav-logo">Richy Camarillo</a>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Work</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="assets/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
       </ul>
     </div>
   </nav>
@@ -42,24 +44,20 @@
 
   <!-- ============================================================
        HERO
-       ✏️ Edit .hero-label, .hero-headline, .hero-sub, and CTAs
        ============================================================ -->
   <section id="hero">
     <div class="container">
       <div class="hero-content">
 
-        <span class="hero-label reveal">Designer → Data Analyst</span>
+        <span class="hero-label reveal">Interaction Designer</span>
 
         <h1 class="hero-headline reveal">
-          Turning data into<br>
-          <em>clear, beautiful</em><br>
-          stories.
+         Producing designs through UXR and data analysis
         </h1>
 
-        <!-- ✏️ Write 1–2 sentences describing who you are -->
+        <!-- brief self-description-->
         <p class="hero-sub reveal">
-          I'm a designer transitioning into data analytics — bridging the gap
-          between insight and communication through clean visuals and thoughtful design.
+          I'm a designer expanding into data & analytics to emphasize behavioral analysis and make data-driven decisions.
         </p>
 
         <div class="hero-actions reveal">
@@ -75,11 +73,11 @@
 
   <!-- ============================================================
        ABOUT
-       ✏️ Left: bio paragraphs + "currently" block
-       ✏️ Right: stat items — update numbers and descriptions
+        Left: bio paragraphs + "currently" block
+        Right: stat items
        ============================================================ -->
   <section id="about">
-    <div class="container">
+    <div class="container-wide">
 
       <p class="section-label reveal">About me</p>
       <h2 class="section-title reveal">Background & focus</h2>
@@ -88,41 +86,43 @@
 
         <!-- LEFT — Bio -->
         <div class="about-text reveal">
-          <!-- ✏️ Replace with your own bio -->
           <p>
-            I've spent the past [X] years working as a designer, crafting visual
-            experiences for clients across [industries]. Along the way I became
-            obsessed with the stories hidden inside data — and decided to go learn
-            how to find them.
+            I've spent the past 5 years working as a designer, crafting visual
+            experiences across various digital enironments. Along the way I became
+            interested in the stories hidden inside data — and decided to learn
+            how to find and present them.
           </p>
           <p>
             I'm currently studying data analytics, adding SQL, Python, and
-            Tableau to my toolkit so I can design dashboards and reports that
-            are as functional as they are beautiful.
+            Tableau to my toolkit so I can design and deliver actionable insights.
+          </p>
+          <p>
+            Front-end Development has laways been an interest of mine, and I am also
+            practicing with more langugaes and frameworks for web development.
           </p>
 
-          <!-- ✏️ Update with your current role / project / course -->
+          <!-- Current role/ project -->
           <div class="about-currently">
             <strong>Currently</strong>
-            Completing [your current course / role / project].
+            Pursuing microsoft python development professional certificate
           </div>
         </div>
 
         <!-- RIGHT — Stats -->
         <div class="about-stats reveal">
 
-          <!-- ✏️ Update each number and description -->
+          <!-- number and description -->
           <div class="stat-item">
-            <div class="stat-number">5+</div>
+            <div class="stat-number">5</div>
             <div class="stat-desc">Years in design</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">12</div>
-            <div class="stat-desc">Client projects delivered</div>
+            <div class="stat-number">7</div>
+            <div class="stat-desc">Leadership highlights</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">3</div>
-            <div class="stat-desc">Data tools currently learning</div>
+            <div class="stat-number">8+</div>
+            <div class="stat-desc">Years in Customer Experience & Satisfaction</div>
           </div>
 
         </div>
@@ -139,7 +139,7 @@
        ✏️ Update tags, title, description, and href on each card
        ============================================================ -->
   <section id="projects">
-    <div class="container">
+    <div class="container-wide">
 
       <p class="section-label reveal">Selected work</p>
       <h2 class="section-title reveal">Projects & case studies</h2>
@@ -149,17 +149,17 @@
         <!-- ── PROJECT CARD — MountainSeed ── -->
         <div class="project-card reveal">
           <!-- ✏️ Replace with: <img src="images/ms-thumb.jpg" alt="MountainSeed"> -->
-          <div class="project-thumb">📊</div>
+          <div class="project-thumb"><img src="assets/mountainseed/mountainseed thumb.jpg" alt="stock data reports"></div>
           <div class="project-body">
             <div class="project-tags">
-              <span class="tag">Internship</span>
+              <span class="tag">Cross-Functional</span>
               <span class="tag">UX Design</span>
               <span class="tag">Data Viz</span>
+              <span class="tag">Data Analysis</span>
             </div>
             <h3 class="project-title">MountainSeed — Lender Portfolio</h3>
             <p class="project-desc">
-              Designed a new analytics feature bringing bank credit analysts and
-              loan officers onto a commercial real estate platform for the first time.
+              Spearheaded design explorations and then production for a new analytics feature that expands functionality to lender roles at banksand credit unions.
             </p>
             <a href="mountainseed.html" class="project-link">View case study →</a>
           </div>
@@ -167,44 +167,28 @@
 
         <!-- ── PROJECT CARD — Kiwi ── -->
         <div class="project-card reveal">
-          <div class="project-thumb">🥝</div>
+          <div class="project-thumb"><img src="assets/kiwi/airport stock.jpg" alt="vision pro image"></div>
           <div class="project-body">
             <div class="project-tags">
               <span class="tag">AR Design</span>
               <span class="tag">Team Project</span>
+              <span class="tag">UX / UI</span>
+              <span class="tag">Lean UX</span>
             </div>
             <h3 class="project-title">Kiwi — AR Airport Navigation</h3>
             <p class="project-desc">
-              An augmented reality airport companion enabling wayfinding, object
-              recognition, and staff assistance in a single AR-native interface.
+              An AR application for navigation assistance and convenience during air-travel experiences, designed using Lean UX methodology.
             </p>
             <a href="kiwi.html" class="project-link">View case study →</a>
           </div>
         </div>
 
-        <!-- ── PROJECT CARD — FYR ── -->
-        <div class="project-card reveal">
-          <div class="project-thumb">🛹</div>
-          <div class="project-body">
-            <div class="project-tags">
-              <span class="tag">UI Design</span>
-              <span class="tag">Education</span>
-            </div>
-            <h3 class="project-title">Find Your Ride</h3>
-            <p class="project-desc">
-              A web prototype teaching beginners how to choose the right skateboard
-              for their lifestyle — built from personal expertise.
-            </p>
-            <a href="fyr.html" class="project-link">View case study →</a>
-          </div>
-        </div>
-
         <!-- ── PROJECT CARD — Ladle ── -->
         <div class="project-card reveal">
-          <div class="project-thumb">🥄</div>
+          <div class="project-thumb"><img src="assets/ladle/pexels-antonius-ferret-6223124.jpg" alt="stock cooking image"></div>
           <div class="project-body">
             <div class="project-tags">
-              <span class="tag">UX Design</span>
+              <span class="tag">UX / UI</span>
               <span class="tag">Goal-Directed Design</span>
             </div>
             <h3 class="project-title">Ladle — Cooking Motivation App</h3>
@@ -223,11 +207,10 @@
 
   <!-- ============================================================
        SKILLS
-       ✏️ Edit skill name, level label, and data-width (0–100)
           data-width controls the bar fill length via main.js
        ============================================================ -->
   <section id="skills">
-    <div class="container">
+    <div class="container-wide">
 
       <p class="section-label reveal">Capabilities</p>
       <h2 class="section-title reveal">Skills & tools</h2>
@@ -241,16 +224,6 @@
           <div class="skill-item">
             <div class="skill-header">
               <span>Figma</span>
-              <span class="skill-level">Expert</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-fill" data-width="90"></div>
-            </div>
-          </div>
-
-          <div class="skill-item">
-            <div class="skill-header">
-              <span>Adobe Creative Suite</span>
               <span class="skill-level">Advanced</span>
             </div>
             <div class="skill-bar">
@@ -260,11 +233,31 @@
 
           <div class="skill-item">
             <div class="skill-header">
-              <span>UI / UX Design</span>
+              <span>Adobe Creative Suite</span>
+              <span class="skill-level">Intermediate</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>UX Design & UXR</span>
               <span class="skill-level">Advanced</span>
             </div>
             <div class="skill-bar">
-              <div class="skill-fill" data-width="85"></div>
+              <div class="skill-fill" data-width="90"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>UI Design & Development</span>
+              <span class="skill-level">Advanced</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="80"></div>
             </div>
           </div>
 
@@ -278,6 +271,71 @@
             </div>
           </div>
 
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>HTML / CSS / JS</span>
+              <span class="skill-level">Proficient</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>React</span>
+              <span class="skill-level">Learning</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="40"></div>
+            </div>
+          </div>
+        </div>
+        <!-- MIDDLE - Developer tools -->
+
+        <div class="reveal">
+          <p class="skill-group-title">Developer Tools & Productivity</p>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Git / Github</span>
+              <span class="skill-level"> Intermediate</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>VS Code</span>
+              <span class="skill-level"> Proficient</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="75"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>DBeaver (data management)</span>
+              <span class="skill-level"> Learning</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="40"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span>Claude (AI-assisted development)</span>
+              <span class="skill-level"> Intermediate</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" data-width="60"></div>
+            </div>
+          </div>
+
         </div>
 
         <!-- RIGHT — Data skills -->
@@ -287,10 +345,10 @@
           <div class="skill-item">
             <div class="skill-header">
               <span>Tableau</span>
-              <span class="skill-level">Proficient</span>
+              <span class="skill-level">Learning</span>
             </div>
             <div class="skill-bar">
-              <div class="skill-fill" data-width="70"></div>
+              <div class="skill-fill" data-width="40"></div>
             </div>
           </div>
 
@@ -310,7 +368,7 @@
               <span class="skill-level">Learning</span>
             </div>
             <div class="skill-bar">
-              <div class="skill-fill" data-width="40"></div>
+              <div class="skill-fill" data-width="50"></div>
             </div>
           </div>
 
@@ -332,27 +390,45 @@
 
   <!-- ============================================================
        CONTACT
-       ✏️ Update email in both the href and visible text
-       ✏️ Update social link hrefs
+        Update social link hrefs
        ============================================================ -->
   <section id="contact">
     <div class="container">
 
-      <p class="section-label reveal">Let's connect</p>
-      <h2 class="section-title reveal">Get in touch</h2>
-
+      <p class="section-label reveal">Get in touch</p>
+      <h2 class="section-title reveal">Reach out anytime</h2>
+  <!-- ===========================================================
+       Remove comment tags below if you want to empahsize email
+       =========================================================== -->
+  <!-- 
       <div class="reveal">
-        <!-- ✏️ Replace with your real email -->
-        <a href="mailto:hello@yourname.com" class="contact-email">
-          hello@yourname.com
+        <a href="mailto:camarillorichard.1@gmail.com" class="contact-email">
+          camarillorichard.1@gmail.com
         </a>
       </div>
+      -->
+       
+      
 
-      <!-- ✏️ Replace hrefs with your real profile URLs -->
       <ul class="social-links reveal">
-        <li><a href="https://linkedin.com/in/yourhandle" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/FabianGoji"      target="_blank">GitHub</a></li>
-        <li><a href="https://behance.net/yourhandle"     target="_blank">Behance</a></li>
+        <li>
+          <a href="mailto:camarillorichard.1@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/richard-camarillo/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/FabianGoji" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </li>
       </ul>
 
     </div>
@@ -365,7 +441,7 @@
        ============================================================ -->
   <footer>
     <div class="container">
-      <p>© 2025 Your Name. Designed & built by me.</p>
+      <p>© 2025 Richy Camarillo. Designed &amp; built by me.</p>
     </div>
   </footer>
 

@@ -30,7 +30,28 @@ if (nav) {
 
 
 /* ================================================================
-   2. SCROLL REVEAL
+   2. HAMBURGER MENU
+   Toggles .menu-open on <nav> on mobile. Closes on link click.
+================================================================ */
+const hamburger = document.querySelector('.nav-hamburger');
+
+if (hamburger && nav) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('menu-open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  nav.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+
+/* ================================================================
+   3. SCROLL REVEAL
    Uses IntersectionObserver to add .visible to each .reveal
    element as it enters the viewport. Siblings are staggered
    slightly for a cascade effect.
@@ -48,11 +69,9 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
 /* ================================================================
-   3. SKILL BAR ANIMATION — index.html only
+   4. SKILL BAR ANIMATION — index.html only
    When a .skill-fill bar enters the viewport, its width expands
    to the percentage set in its data-width attribute (0–100).
-
-   ✏️ To change a bar's fill level, update data-width in index.html.
 ================================================================ */
 const skillBars = document.querySelectorAll('.skill-fill');
 

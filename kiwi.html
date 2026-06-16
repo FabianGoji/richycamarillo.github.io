@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kiwi — AR Navigation | Your Name</title>
+  <title>Kiwi — AR Airport Navigation | Richy Camarillo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
   <!-- ============================================================
        NAV BAR
-       ✏️ Update "Your Name"
-       ✏️ .active marks the current page
        ============================================================ -->
   <nav id="main-nav">
     <div class="container-wide nav-inner">
-      <a href="index.html" class="nav-logo">Your Name</a>
+      <a href="index.html" class="nav-logo">Richy Camarillo</a>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
-        <li><a href="index.html">Work</a></li>
-        <li><a href="kiwi.html" class="active">Kiwi</a></li>
-        <li><a href="fyr.html">FYR</a></li>
-        <li><a href="ladle.html">Ladle</a></li>
         <li><a href="mountainseed.html">MountainSeed</a></li>
+        <li><a href="kiwi.html" class="active">Kiwi</a></li>
+        <li><a href="ladle.html">Ladle</a></li>
+        <li><a href="assets/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
       </ul>
     </div>
   </nav>
@@ -39,49 +42,47 @@
     <div class="container">
 
       <div class="cs-eyebrow reveal">
-        Case Study <span>/</span> AR App <span>/</span> Team Project
+        Case Study <span>/</span> UX Designer &amp; Researcher <span>/</span> 2023
       </div>
 
       <h1 class="cs-title reveal">
         Kiwi —<br>
-        <em>AR Navigation</em><br>
-        for Airports
+        an <em>AR navigation app</em><br>
+        for air travel
       </h1>
 
       <p class="cs-summary reveal">
-        Designing an augmented reality airport companion — enabling wayfinding,
-        object recognition, staff assistance requests, and live ticket information
-        in a single AR-native interface.
+        Designing a prototype for an augmented reality airport companion — built
+        with a cross-disciplinary team of four over eight weeks, using Lean UX
+        methodology and the Apple Vision Pro as the target platform.
       </p>
 
       <div class="cs-meta reveal">
         <div class="cs-meta-item">
-          <div class="cs-meta-label">Course</div>
-          <div class="cs-meta-value">Interaction Design 2 — Prof. Michael Lahey</div>
+          <div class="cs-meta-label">Role</div>
+          <div class="cs-meta-value">UX Designer &amp; Researcher</div>
         </div>
         <div class="cs-meta-item">
-          <div class="cs-meta-label">Type</div>
-          <div class="cs-meta-value">Team Project</div>
+          <div class="cs-meta-label">Duration</div>
+          <div class="cs-meta-value">8 Weeks (Oct – Nov 2023)</div>
         </div>
         <div class="cs-meta-item">
-          <div class="cs-meta-label">Platform</div>
-          <div class="cs-meta-value">AR OS — Apple HIG Reference</div>
+          <div class="cs-meta-label">Tools</div>
+          <div class="cs-meta-value">Figma · Microsoft Teams</div>
         </div>
         <div class="cs-meta-item">
-          <div class="cs-meta-label">Scope</div>
-          <div class="cs-meta-value">Research · Usability Testing · Prototyping · Brand</div>
+          <div class="cs-meta-label">Method</div>
+          <div class="cs-meta-value">Lean UX · Research · Usability Testing · Prototyping</div>
         </div>
       </div>
 
-      <!-- ✏️ Replace placeholder with your cover image -->
-      <div class="cs-hero-media reveal">
-        <div class="cs-media-inner ratio-16-9">
-          <div class="cs-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            Cover image — Kiwi app overview
-          </div>
+      <div class="cs-media reveal">
+        <div id="no-border" class="cs-media-inner bare">
+            <a class="glightbox" href="assets/kiwi/kiwi-ladning-frame.png" style="display: block;">
+            <img src="assets/kiwi/kiwi-ladning-frame.png" alt="Kiwi landing frame" style="width: 100%;">
+            </a>
         </div>
-        <p class="cs-media-caption">Kiwi — final prototype overview</p>
+        <p class="cs-media-caption">Kiwi — final prototype landing frame</p>
       </div>
 
     </div>
@@ -93,45 +94,58 @@
 
 
       <!-- ══════════════════════════════════════════════════════
-           01 — CONTEXT
+           01 — OVERVIEW
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
-        <div class="cs-section-label">01 — Context</div>
-        <h2 class="cs-section-title">An AR companion for one of travel's most stressful environments</h2>
+        <div class="cs-section-label">01 — Overview</div>
+        <h2 class="cs-section-title">Designing an AR airport experience for Apple Vision Pro</h2>
 
         <div class="cs-prose">
           <p>
-            Kiwi is an augmented reality airport navigation app designed for
-            Interaction Design 2 at Kennesaw State University, taught by Professor
-            Michael Lahey. Built as a team project for an AR operating system,
-            Apple's Human Interface Guidelines informed visual design decisions
-            throughout — grounding the work in an established system rather than
-            inventing conventions from scratch.
+            Kiwi was a collaborative project undertaken by four Interaction Design
+            students using the Lean UX framework over eight weeks, from October to
+            late November 2023. The brief was open-ended but focused: design a
+            prototype for an AR app that makes the air-travel experience
+            <strong>seamless, inclusive, and personalized</strong> — targeting the
+            Apple Vision Pro as the development platform.
           </p>
           <p>
-            Airports are high-complexity, high-stress environments. Passengers
-            routinely struggle to navigate terminals, interpret signage, locate
-            gates, and find help quickly — especially in unfamiliar airports under
-            time pressure. Kiwi was designed to reduce that friction by putting
-            <strong>wayfinding</strong>, <strong>object recognition</strong>,
-            <strong>staff assistance requests</strong>, and <strong>live maps
-            and ticket information</strong> into a single AR-native interface
-            that responds to the user's physical environment in real time.
+            Air travel is a high-pressure, high-complexity environment where
+            passengers routinely struggle with navigation, time management, and
+            finding contextual information in unfamiliar airports. AR technology
+            offered a meaningful advantage: integrated, customizable visual guides
+            layered directly over the physical environment. It also gave us the
+            challenge of designing something original and future-facing at a moment
+            when AR applications were still largely uncharted territory.
           </p>
         </div>
 
-        <div class="cs-pullquote">
-          <p>"The airport is already a designed environment — Kiwi had to
-          layer on top of it without adding to the noise."</p>
+        <div class="cs-pullquote reveal">
+          <p>
+            "Our objective was to design a prototype for an AR app that makes the
+            air-travel experience seamless, inclusive, and personalized."
+          </p>
         </div>
 
-        <div class="cs-tags">
+        <div class="cs-prose reveal">
+          <p><strong>Project goals:</strong></p>
+          <ul>
+            <li>Make navigation assistance simple, intuitive, and customizable</li>
+            <li>Provide route creation tools for travel assistance within airports</li>
+            <li>Offer the ability to purchase and manage air travel-related services within the app</li>
+            <li>Design for inclusivity and accessibility</li>
+            <li>Design an interface for development on the Apple Vision Pro headset</li>
+          </ul>
+        </div>
+
+        <div class="cs-tags reveal">
           <span class="cs-tag">AR Design</span>
-          <span class="cs-tag">Apple HIG</span>
-          <span class="cs-tag">Interaction Design</span>
-          <span class="cs-tag">Usability Testing</span>
           <span class="cs-tag">Lean UX</span>
+          <span class="cs-tag">Team Project</span>
+          <span class="cs-tag">UX Research</span>
+          <span class="cs-tag">Usability Testing</span>
+          <span class="cs-tag">Apple Vision Pro</span>
           <span class="cs-tag">Figma</span>
           <span class="cs-tag">Prototyping</span>
         </div>
@@ -140,44 +154,87 @@
 
 
       <!-- ══════════════════════════════════════════════════════
-           02 — LEAN UX CANVAS
-           Two-column: image left, accordion right.
-           Accordion is controlled by main.js (#lux-accordion).
+           02 — APPROACH
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
-        <div class="cs-section-label">02 — Process Foundation</div>
-        <h2 class="cs-section-title">Lean UX Canvas — structuring the problem before designing the solution</h2>
+        <div class="cs-section-label">02 — Approach</div>
+        <h2 class="cs-section-title">A problem worth solving, and a method to match</h2>
 
         <div class="cs-prose">
           <p>
-            Before any design work began, the team used a Lean UX Canvas to
-            establish shared alignment on the problem space. The canvas forced
-            us to articulate business outcomes, user types, success metrics, and
-            hypotheses before touching Figma — ensuring every design decision
-            was grounded in clearly stated assumptions rather than intuition alone.
+            Our team identified a clear pattern in existing air travel products:
+            widespread failures in <strong>accessibility, accuracy, and overall user
+            experience</strong>. AR technology offered a structural advantage that
+            conventional apps couldn't replicate. Integrated, customizable visual
+            guides that work in the context of the user's physical environment rather
+            than requiring them to step away from it. It also gave us the challenge
+            of designing something genuinely novel at a moment when the platform
+            itself was still new.
+          </p>
+          <p>
+            For our design method, we used an adaptation of the
+            <strong>Lean UX framework</strong> — a process centered on
+            cross-disciplinary collaboration within short timeframes, with continuous
+            learning through iterative design as its core operating principle.
+            In the words of Jeff Gothelf and Josh Seiden, Lean UX
+            <em>"brings the nature of a product to light faster, in a collaborative,
+            cross-functional, and user-centered way."</em>
+          </p>
+          <p>
+            Our timeline was eight weeks: two three-week sprints, followed by two
+            weeks of refinement. Working in person was ideal but challenging — our
+            team was composed of full-time students with varying schedules.
+            Frequent virtual communication within Microsoft Teams became essential
+            to maintaining a proactive working environment within those constraints.
           </p>
         </div>
 
-        <div class="canvas-layout">
+      </section>
 
-          <!-- LEFT — Canvas image
-               ✏️ Replace placeholder with:
-               <img src="images/lean-ux-canvas.jpg" alt="Lean UX Canvas"> -->
-          <div class="canvas-image">
-            <div class="cs-media-inner">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                Lean UX Canvas artifact
-              </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           03 — LEAN UX CANVAS
+           Canvas image left · Accordion breakdown right.
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section">
+
+        <div class="cs-section-label">03 — The Lean UX Canvas</div>
+        <h2 class="cs-section-title">Structuring assumptions before designing solutions</h2>
+
+        <div class="cs-prose">
+          <p>
+            The Lean UX Canvas guided the team through a structured set of
+            collaborative brainstorming exercises before any design work began.
+            Its purpose is to surface and articulate a team's initial assumptions —
+            establishing a shared foundation for hypotheses, design plans, and
+            testable MVPs. This allows teams to validate ideas quickly
+            while minimizing wasted effort.
+          </p>
+          <p>
+            <strong>An early example of speed with Lean UX</strong><br>
+            We initially assumed that Kiwi's value would be concentrated in airports the user was
+            unfamiliar with. Through interviews and testing, we found the need was
+            consistent <strong>regardless of how familiar a traveler was</strong>
+            with a given airport. This shift would greatly affect how we scoped
+            the product.
+          </p>
+        </div>
+
+        <div class="canvas-layout reveal">
+
+          <!-- LEFT — Canvas image placeholder -->
+          <div class="cs-media">
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/goethelf lean ux canvas.png">
+                <img src="assets/kiwi/goethelf lean ux canvas.png" alt="Lean UX Canvas template">
+              </a>
             </div>
-            <p class="cs-media-caption">Completed Lean UX Canvas — Kiwi</p>
+            <p class="cs-media-caption">Lean UX Canvas template</p>
           </div>
 
-          <!-- RIGHT — Accordion
-               One item open at a time — controlled by main.js.
-               Number + name always visible. Definition revealed on click.
-               ✏️ Do not change id="lux-accordion" — main.js targets it. -->
+          <!-- RIGHT — Accordion breakdown
+               id="lux-accordion" is required — main.js targets it. -->
           <div class="canvas-accordion" id="lux-accordion">
 
             <div class="accordion-item">
@@ -206,8 +263,8 @@
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  Determine 'success' metrics by identifying what behaviors and actions
-                  (outcomes) will lead to the desired result (impact).
+                  Determining success metrics by identifying what behaviors and
+                  actions (outcomes) will lead to the desired result (impact).
                 </div>
               </div>
             </div>
@@ -222,8 +279,9 @@
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  Infer what type of users and customers we should be focusing on;
-                  formulating proto-personas.
+                  Inferring what type of users and customers to focus on —
+                  formulating proto-personas based on team assumptions before
+                  research begins.
                 </div>
               </div>
             </div>
@@ -232,14 +290,14 @@
               <button class="accordion-trigger" aria-expanded="false">
                 <div class="accordion-trigger-left">
                   <span class="accordion-num">#4</span>
-                  <span class="accordion-name">User Outcomes & Benefits</span>
+                  <span class="accordion-name">User Outcomes &amp; Benefits</span>
                 </div>
                 <svg class="accordion-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  State what incentives, benefits, and behavioral changes upon goal
-                  achievement our users would have with the product.
+                  Stating the incentives, benefits, and behavioral changes users
+                  would experience upon achieving their goals with the product.
                 </div>
               </div>
             </div>
@@ -254,8 +312,8 @@
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  Seek ideas for product creation, feature, or enhancement that will
-                  meet the needs of the user and the business.
+                  Generating ideas for product features or enhancements that meet
+                  the needs of both the user and the business.
                 </div>
               </div>
             </div>
@@ -270,9 +328,9 @@
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  Combine projected business outcomes, user types, user benefits, and
-                  solutions into individualized assumption statements to understand the
-                  risk associated with each design plan or change.
+                  Combining projected business outcomes, user types, user benefits,
+                  and solutions into individualized assumption statements — making
+                  the risk of each design decision explicit.
                 </div>
               </div>
             </div>
@@ -287,8 +345,8 @@
               </button>
               <div class="accordion-panel">
                 <div class="accordion-content">
-                  Organize hypotheses according to risk level and the value of the
-                  proposed solution — prioritizing what to validate first.
+                  Organizing hypotheses by risk level and solution value — determining
+                  what to validate first and where the highest-stakes assumptions live.
                 </div>
               </div>
             </div>
@@ -304,8 +362,8 @@
               <div class="accordion-panel">
                 <div class="accordion-content">
                   Planning designs that require the least fidelity and resources to
-                  create, yet can still validate hypotheses — minimizing waste before
-                  committing to production.
+                  produce, yet can still validate the highest-priority hypotheses —
+                  minimizing waste before committing to production.
                 </div>
               </div>
             </div>
@@ -317,64 +375,285 @@
 
 
       <!-- ══════════════════════════════════════════════════════
-           03 — SPRINT 1
+           04 — SPRINT 1
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
-        <div class="cs-section-label">03 — Sprint 1</div>
+        <div class="cs-section-label">04 — Sprint 1</div>
         <h2 class="cs-section-title">Mapping the core experience</h2>
 
         <div class="cs-prose">
           <p>
-            Sprint 1 focused on establishing Kiwi's foundational flows: wayfinding,
-            object recognition, and the assistance request system. Research into
-            airport user behavior, AR interaction patterns, and Apple's Human
-            Interface Guidelines formed the starting point — grounding early decisions
-            in an established design system rather than convention-free invention.
+            At the start of each sprint, the team worked through the Lean UX Canvas
+            together — conducting research and brainstorming exercises for each
+            component. Meetings were facilitated in person, supplemented by ongoing
+            coordination in Microsoft Teams. From this work, we built a
+            <strong>product backlog</strong> to track proposed solutions and
+            hypotheses, and a <strong>sprint backlog</strong> defining which items
+            would be built and tested in Sprint 1.
+          </p>
+        </div>
+        
+        <div class="cs-media-grid cols-2">
+          <div class="cs-prose">
+            <p>
+              For Sprint 1, we identified four design plans as our MVPs:
+              <strong>Visual Waypoints</strong>, <strong>Navigation Assistance</strong>,
+              <strong>Route Creation</strong>, and <strong>Purchase Portal</strong>.
+              Each corresponded to a hypothesis in the sprint backlog. We divided
+              the MVPs among team members to maximize our time. I was assigned
+              Navigation Assistance — the user journey for following the route to
+              a set destination. For testing, this required a sequence of screens that would allow
+              interviewees to use the <strong>Think-Aloud protocol</strong>,
+              verbally articulating their emotions, logic, and decisions as they moved
+              through the experience of using kiwi's navigation.
+            </p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/written mvps.jpeg">
+                <img src="assets/kiwi/written mvps.jpeg" alt="written mvps picture">
+              </a>
+            </div>
+            <p class="cs-media-caption">MVP planning - written sequence of initial MVPs</p>
+          </div>
+        </div>
+        
+        <h3 class="section-subtitle">Our proto-persona</h3>
+        <div class="cs-split-grid">
+          <div class="cs-prose">
+            <p>
+              As part of the Users section of the canvas, the team built a
+              proto-persona based on our collective assumptions about who would use
+              Kiwi and what they would need. A proto-persona is constructed without
+              prior user research and is intended to evolve as the product develops.
+            </p>
+            <p>
+              Our persona is <strong>Loren Hayes</strong>, an auditor who travels
+              frequently and encounters consistent friction: inefficient navigation,
+              limited contextual information about the airport environment, and the
+              pressure of time-sensitive tasks. These obstacles were projected onto
+              a personality the team built together, and served as the anchor for
+              our design decisions throughout Sprint 1.
+            </p>
+          </div>
+          <div class="cs-split-media reveal">
+            <div>
+              <div class="cs-media-inner bare">
+                <a class="glightbox" href="assets/kiwi/proto-persona-1.png">
+                  <img src="assets/kiwi/proto-persona-1.png" alt="proto-persona-1">
+                </a>
+              </div>
+              <p class="cs-media-caption">Sprint 1 proto-persona — Loren Hayes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            The remaining two weeks of Sprint 1 were dedicated to user research
+            interviews and iterative MVP development. We scheduled five interviews
+            with participants matching our projected user type. Due to our time
+            constraint, the first session was conducted without any MVP artifacts —
+            focusing instead on open-ended inquiry to learn about the target
+            audience. In subsequent interviews, participants began with open-ended
+            questions before being guided through the current MVPs. Designs were
+            updated between each session, and we completed <strong>four
+            iterations</strong> in total.
           </p>
           <p>
-            My contributions centered on general research into AR UX patterns and
-            airport navigation behavior, moderating two of the team's usability test
-            sessions, and observing and recording notes across all sessions. Getting
-            into a testing environment early meant assumptions were being validated
-            while they were still cheap to change.
-          </p>
-          <p>
-            The central design challenges of Sprint 1 were <strong>AR overlay
-            density</strong> — how much information could live in the camera view
-            without overwhelming the user — and <strong>persistent UI placement</strong>,
-            ensuring core controls stayed accessible without occluding the physical
-            environment the user was navigating through.
+            One significant shift emerged near the end of the first week. While
+            working on Navigation Assistance, I realized that a critical part of
+            the flow — route creation — had been assigned to another teammate,
+            Michelle Hayden. Route creation would show the user journey to set a
+            custom route originating from the homepage, and would incorporate
+            the maps feature. In our initial iteration, we had designed separate
+            screens for each. Recognizing the overlap, Michelle and I decided to
+            develop our MVPs as a pair. We still kept Navigation Assistance and
+            Route Creation separate for testing purposes, but worked together from
+            that point forward. My responsibilities remained focused on the user
+            journey screens and interface styling — but this pairing also meant
+            taking on significantly more depth with the interactive map feature.
           </p>
         </div>
 
         <div class="cs-media-grid cols-2 reveal">
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Sprint 1 — wayfinding flow
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/Sprint-1-mvp-nav-assist-iteration-1.png">
+                <img src="assets/kiwi/Sprint-1-mvp-nav-assist-iteration-1.png" alt="sprint 1, iteration 1 kiwi maps">
+              </a>
             </div>
+            <p class="cs-media-caption">Sprint 1 - kiwi maps first iteration</p>
           </div>
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Sprint 1 — assistance request flow
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/sprint1-mvp-nav-assist-final-iteration.png">
+                <img src="assets/kiwi/sprint1-mvp-nav-assist-final-iteration.png" alt="sprint 1, final iteration kiwi maps">
+              </a>
             </div>
+            <p class="cs-media-caption">Sprint 1 - kiwi maps final iteration</p>
           </div>
         </div>
-        <p class="cs-media-caption">Sprint 1 — wayfinding (left) · assistance request system (right)</p>
+
+        <h3 class="section-subtitle">Sprint 1 retrospective</h3>
+        <div class="cs-prose">
+          <p>
+            The retrospective was conducted at the end of the second week through
+            a virtual meeting, using a template provided by the course instructor.
+            Team members shared thoughts anonymously via digital post-its — cameras
+            and microphones off — to keep responses honest and unbiased.
+          </p>
+          <p>
+            <em>What went well:</em> The team maintained strong chemistry,
+            communication, and work ethic throughout the sprint. Our iteration pace
+            stood out — the MVPs consistently reflected feedback from the prior
+            interview session, showing that research was being actively integrated
+            into the design.
+          </p>
+          <p>
+            <em>What could have gone better:</em> While the interviews were
+            productive, we all identified a need for better organization and
+            structure in how walkthroughs were moderated, and cleaner transitions
+            between MVP segments. UI consistency was also raised — we needed to
+            establish and apply a defined style system across the product.
+          </p>
+          <p>
+            <em>What we would try next:</em> The team aligned on one goal
+            for Sprint 2 — a functional prototype. We wanted a dynamic, interactive
+            experience ready for the next round of users, which meant narrowing our
+            focus to complete, consistent interactions for the core features,
+            integrated into a coherent flow.
+          </p>
+        </div>
+
+        <div class="cs-media reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/sprint-1-retrospective.png">
+                <img src="assets/kiwi/sprint-1-retrospective.png" alt="sprint 1 retrospective">
+              </a>
+            </div>
+            <p class="cs-media-caption">Sprint 1 retrospective template — anonymous post-its</p>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════
+           05 — SPRINT 2
+           ══════════════════════════════════════════════════════ -->
+      <section class="cs-section">
+
+        <div class="cs-section-label">05 — Sprint 2</div>
+        <h2 class="cs-section-title">Refining for real-world use</h2>
+
+        <div class="cs-prose">
+            <p>
+              Entering Sprint 2, the team revisited the Lean UX Canvas with new
+              insights gathered from Sprint 1 research and user feedback. The
+              business problem was updated to reflect newly surfaced struggles —
+              navigation near car rental facilities and accounting for TSA wait
+              times. The proto-persona was expanded to address additional needs:
+              assistance with trip planning and timeframe management, access to
+              live store-hours information, and guidance on exit routes.
+            </p>
+            <p>
+              These updates cascaded into the outcome-to-impact mapping, which
+              was revised with new leading and lagging outcome paths. We added
+              <strong>three new hypothesis statements</strong> — introducing a
+              trip planner feature, TSA wait time integration, and in-app pop-up
+              screens for restaurants and stores — and removed three prior
+              statements that had become redundant. After reordering prioritizations
+              and updating the risk and MVP tables, we built the Sprint 2 backlog.
+            </p>
+          </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+            <div>
+              <div class="cs-media-inner bare">
+                <a class="glightbox" href="assets/kiwi/sprint-2-Outcome-to-Impact Mapping.png">
+                  <img src="assets/kiwi/sprint-2-Outcome-to-Impact Mapping.png" alt="sprint 2 hypothesis table with planned testing">
+                </a>
+              </div>
+              <p class="cs-media-caption">Sprint 2 design week — updated Lean UX Canvas with new outcome-to-impact mapping</p>
+            </div>
+            <div>
+              <div class="cs-media-inner bare">
+                <a class="glightbox" href="assets/kiwi/sprint 2 Hypothesis Table - MVP_ How will you test_.png">
+                  <img src="assets/kiwi/sprint 2 Hypothesis Table - MVP_ How will you test_.png" alt="sprint 2 hypothesis table with planned testing">
+                </a>
+              </div>
+              <p class="cs-media-caption">Sprint 2 design week — updated Lean UX Canvas with new hypotheses</p>
+            </div>
+        </div>
 
         <div class="cs-prose">
           <p>
-            <strong>Sprint 1 Retrospective —</strong> Usability testing surfaced
-            two consistent gaps: the information hierarchy broke down in AR context
-            when multiple overlays competed for attention, and several flows assumed
-            too much interface familiarity for a first-time user in a live airport
-            environment. Both became primary targets for Sprint 2.
+            Sprint 2 followed the same rhythm as the first: continuously learning
+            from interviews and refining designs in response. The key difference
+            was that the product backlog and style system were now solidified,
+            giving the Figma work significantly more consistency. Design plans
+            became more narrowly scoped, so iterations focused on improving
+            interactions rather than revisiting visual design; rough screens were
+            converging into a final prototype.
+          </p>
+          <p>
+            The most technically intensive work in Sprint 2 was the
+            <strong>Kiwi Maps feature</strong>. Navigation Assistance and Route
+            Creation had evolved from separate MVP flows into a unified product
+            feature — and building it required an interactive, scrollable map
+            component with actionable elements. To achieve this, I
+            built a component set called <strong>map filtering</strong> with
+            32 variations covering every possible layout for map filter combinations.
+            I constructed a nested filter bar component — also with 32 variations
+            — that enabled click interactions to switch between map states.
+            We configured <strong>over 130 interactions</strong> in total to
+            support full navigational functionality within the feature.
+          </p>
+          <p>
+            Once the map component was complete, I designed the
+            <strong>Kiwi Maps Interface</strong>: a component set containing both
+            map filtering and a sidebar component with all sidebar navigation
+            variations — providing the full interface context in which the map
+            would be used.
+          </p>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/sprint 2 map interactions.png">
+                <img src="assets/kiwi/sprint 2 map interactions.png" alt="sprint 2 kiwi maps interaction">
+              </a>
+            </div>
+            <p class="cs-media-caption">Sprint 2 - kiwi maps frame interactions</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/kiwi-maps-filter-bar-component-set.png">
+                <img src="assets/kiwi/kiwi-maps-filter-bar-component-set.png" alt="sprint 2 kiwi maps filter bar component set">
+              </a>
+            </div>
+            <p class="cs-media-caption">Sprint 2 - kiwi maps fitler bar component set</p>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">Sprint 2 retrospective</h3>
+        <div class="cs-prose">
+          <p>
+            The final retrospective served both as a reflection on Sprint 2 and a
+            setup for the remaining refinement phase. Consistent team collaboration
+            and continuous learning remained our clearest strengths.
+          </p>
+          <p>
+            I identified two priorities going into refinement: completing screen
+            connections across all prototype walkthroughs, and improving the visual
+            waypoints frames — which had not yet reached the same design quality
+            as the rest of the project. The team also agreed that visual waypoints
+            would be more effective as an AR experience if the frames contained a
+            video background.
           </p>
         </div>
 
@@ -382,72 +661,102 @@
 
 
       <!-- ══════════════════════════════════════════════════════
-           04 — SPRINT 2
+           06 — REFINEMENT
            ══════════════════════════════════════════════════════ -->
       <section class="cs-section reveal">
 
-        <div class="cs-section-label">04 — Sprint 2</div>
-        <h2 class="cs-section-title">Refining for real-world use</h2>
+        <div class="cs-section-label">06 — Refinement</div>
+        <h2 class="cs-section-title">Finalizing flows and resolving prototype constraints</h2>
+
+        <div class="cs-split-grid reveal">
+          <div class="cs-prose">
+            <p>
+              Refinement was the final phase of the project — dedicated to polishing
+              screens, finalizing user flows, and resolving outstanding technical
+              issues in the prototype.
+            </p>
+            <p>
+              The maps feature required dimensional adjustments and a new sidebar
+              component set for the Concourse A entry state. I also made minor
+              refinements to filter color choices and text styles within the map
+              filtering component. After those changes, I reviewed every interaction
+              in the prototype to confirm smooth transitions and correct placement
+              throughout.
+            </p>
+          </div>
+          <div class="cs-split-media">
+            <div>
+              <div class="cs-media-inner">
+                <a class="glightbox" href="assets/kiwi/kiwi-maps-refined-components-section.png">
+                  <img src="assets/kiwi/kiwi-maps-refined-components-section.png" alt="refined component set">
+                </a>
+              </div>
+              <p class="cs-media-caption">Kiwi maps - refined component set for side nav, filters, scenario-specific flow</p>
+            </div>
+          </div>
+        </div>
 
         <div class="cs-prose">
           <p>
-            Sprint 2 responded directly to the retrospective findings. Flows were
-            simplified, the assistance request system was made more prominent and
-            immediately accessible, and maps and ticket information were integrated
-            more naturally into the wayfinding context.
-          </p>
+            The final unresolved challenge was connecting the route creation flow
+            to the visual waypoints screen. A Figma constraint complicated this:
+            <strong>component variant interactions cannot link to screens outside
+            the component set</strong> unless the target is on the same page.
+            To avoid duplicating the entire component set in the finalized paths
+            page, I modified Kiwi Maps Interface to include screen backgrounds and
+            a copy of the visual waypoints — making the final prototype
+            self-contained within a single screen that encompassed the full
+            user journey.
+            </p>
+        </div>
+
+        <div class="cs-media-grid cols-3 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox"  href="assets/kiwi/Refined-kiwi-maps-airport-view.png">
+                <img src="assets/kiwi/Refined-kiwi-maps-airport-view.png" alt="refined kiwi maps, airport view">
+              </a>
+            </div>
+            <p class="cs-media-caption">Kiwi maps - high-level airport view in maps interface</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox"  href="assets/kiwi/refined-kiwi-maps-concourse-view-gate-selected.png">
+                <img src="assets/kiwi/refined-kiwi-maps-concourse-view-gate-selected.png" alt="refined kiwi maps, concourse view">
+              </a>
+            </div>
+            <p class="cs-media-caption">Kiwi maps - gate selection frame from Nav Assistance user journey</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox"  href="assets/kiwi/refined-viusal-waypoints.png">
+                <img src="assets/kiwi/refined-viusal-waypoints.png" alt="refined viusal waypoints view">
+              </a>
+            </div>
+            <p class="cs-media-caption">Visual waypoints - final prototype frame connected to Nav Assistance MVP</p>
+          </div>
+        </div>
+
+        <div class="cs-prose">
           <p>
-            My primary contribution in Sprint 2 was prototyping the <strong>maps
-            experience</strong> — designing both the visual elements and the
-            interaction flow for how a user transitions from the live AR camera
-            view into a schematic terminal map and back. I also contributed to
-            defining Kiwi's brand style, drawing from Apple's design language:
-            clean surfaces, high contrast for legibility across varied lighting,
-            and a restrained color system that wouldn't compete with the live
-            camera environment.
+            Visual waypoints were brought into the component as a variant, since
+            that was the only screen accessed after the maps flow. These decisions
+            limited total free-form interactivity, but they were the right
+            trade-off given that walkthroughs would be guided during the
+            presentation — and the alternative would have required significant
+            time outside the defined project timeline.
           </p>
         </div>
 
-        <!-- ✏️ Replace placeholder with final prototype screenshot -->
         <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Sprint 2 — final hi-fi prototype
-            </div>
-          </div>
-          <p class="cs-media-caption">Sprint 2 — final prototype screens</p>
-        </div>
-
-        <div class="cs-media-grid cols-2 reveal">
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Maps experience prototype
-              </div>
+            <div id="no-border" class="cs-media-inner bare">
+              <a class="glightbox" href="assets/kiwi/kiwi-ladning-frame.png">
+                <img src="assets/kiwi/kiwi-ladning-frame.png" alt="refined landing frame" style="width: 100%">
+              </a>
             </div>
+            <p class="cs-media-caption">Kiwi - final prototype landing frame</p>
           </div>
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Brand style — color, type, components
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="cs-media-caption">Maps experience (left) · Brand style reference (right)</p>
-
-        <div class="cs-prose">
-          <p>
-            <strong>Sprint 2 Retrospective —</strong> The second retrospective
-            examined what remained unresolved — primarily the object recognition
-            flow, which would benefit from more edge-case testing, and the
-            assistance request system, which would need live network integration
-            to validate in a real airport environment. Both are areas I'd prioritize
-            in a third sprint.
-          </p>
         </div>
 
       </section>
@@ -459,26 +768,32 @@
       <section class="cs-section reveal">
 
         <div class="cs-section-label">Reflections</div>
-        <h2 class="cs-section-title">What designing for AR taught me</h2>
+        <h2 class="cs-section-title">What building Kiwi taught me</h2>
 
         <div class="cs-prose">
           <p>
-            Designing for AR introduced constraints I hadn't encountered before —
-            legibility in a live camera environment, the relationship between digital
-            overlays and physical space, and designing interactions for a user whose
-            hands and attention are already occupied navigating a terminal.
+            We shipped a high-fidelity prototype that the team was genuinely
+            proud of. Working on Kiwi was challenging and intensive — and in equal
+            measure, engaging and rewarding. Designing for a platform as new as
+            the Apple Vision Pro meant operating without an established precedent,
+            and working through a rigorous methodology with a team of four in
+            eight weeks required a kind of disciplined communication I hadn't
+            practiced at that pace before.
           </p>
           <p>
-            Apple's HIG gave us a rigorous starting point, but applying established
-            guidelines to a specific AR context required interpretive decisions the
-            documentation couldn't make for us. That gap between a design system
-            and a particular use case is where the most interesting design thinking
-            happens — and Kiwi put me directly in it.
+            The Kiwi Maps interface still has room to grow — full manual interaction
+            regardless of the prescribed user flow remains an open problem given
+            the Figma constraints we encountered. But the prototype effectively
+            demonstrated the core experience and gave users something concrete to
+            respond to.
           </p>
           <p>
-            Moderating and observing usability tests at the pace of a two-sprint
-            project also sharpened how I structure observation notes and translate
-            findings into actionable design changes quickly.
+            Lean UX delivered on its promise: the continuous cycle of designing,
+            testing, and updating in short intervals meant we were always building
+            from real user feedback rather than internal assumptions. That practice
+            — staying close to the user through the whole process rather than
+            just at the beginning — is something I've carried into every project
+            since.
           </p>
         </div>
 
@@ -499,8 +814,8 @@
       </div>
       <div class="cs-footer-nav-item next">
         <span class="cs-footer-label">Next →</span>
-        <a href="fyr.html">
-          <p class="cs-footer-title">Find Your Ride</p>
+        <a href="ladle.html">
+          <p class="cs-footer-title">Ladle</p>
         </a>
       </div>
     </div>
@@ -508,12 +823,15 @@
 
   <footer>
     <div class="container">
-      <p>© 2025 Your Name. Designed & built by me.</p>
+      <p>© 2025 Richy Camarillo. Designed &amp; built by me.</p>
     </div>
   </footer>
 
-  <!-- main.js handles nav scroll, reveal, and the accordion -->
   <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({ selector: '.glightbox' });
+  </script>
 
 </body>
 </html>

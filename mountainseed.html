@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MountainSeed — Lender Portfolio | Your Name</title>
+  <title>MountainSeed — Lender Portfolio | Richy Camarillo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
   <!-- ============================================================
        NAV BAR
-       ✏️ Update "Your Name"
-       ✏️ Add nav links as more case study pages are completed
        ============================================================ -->
   <nav id="main-nav">
     <div class="container-wide nav-inner">
-      <a href="index.html" class="nav-logo">Your Name</a>
+      <a href="index.html" class="nav-logo">Richy Camarillo</a>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
-        <li><a href="index.html">Work</a></li>
-        <li><a href="kiwi.html">Kiwi</a></li>
-        <li><a href="fyr.html">FYR</a></li>
-        <li><a href="ladle.html">Ladle</a></li>
         <li><a href="mountainseed.html" class="active">MountainSeed</a></li>
+        <li><a href="kiwi.html">Kiwi</a></li>
+        <li><a href="ladle.html">Ladle</a></li>
+        <li><a href="assets/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a></li>
       </ul>
     </div>
   </nav>
@@ -39,19 +42,18 @@
     <div class="container">
 
       <div class="cs-eyebrow reveal">
-        Case Study <span>/</span> Internship <span>/</span> 2024
+        Case Study <span>/</span> Junior UX Designer <span>/</span> 2024
       </div>
 
       <h1 class="cs-title reveal">
-        MountainSeed —<br>
-        <em>Analytics Platform</em><br>
-        Internship
+        Lender Portfolio —<br>
+        an <em>analytics product</em> for bank lenders
       </h1>
 
       <p class="cs-summary reveal">
-        Designing a Lender Portfolio feature from scratch — bringing bank
-        credit analysts and loan officers into a commercial real estate
-        analytics platform for the first time.
+        Designing a new portfolio feature for a commercial real estate analytics
+        platform — opening a subscription product for an entirely new user type:
+        lending teams at banks and credit unions.
       </p>
 
       <div class="cs-meta reveal">
@@ -61,28 +63,27 @@
         </div>
         <div class="cs-meta-item">
           <div class="cs-meta-label">Role</div>
-          <div class="cs-meta-value">Product Design Intern</div>
+          <div class="cs-meta-value">Junior UX Designer</div>
         </div>
         <div class="cs-meta-item">
           <div class="cs-meta-label">Duration</div>
-          <div class="cs-meta-value">2 Months</div>
+          <div class="cs-meta-value">6 Months</div>
         </div>
         <div class="cs-meta-item">
           <div class="cs-meta-label">Scope</div>
-          <div class="cs-meta-value">Research · Flows · Wireframes · Prototype · Handoff</div>
+          <div class="cs-meta-value">Research · Information Architecture · User Flows · Wireframing · UI Design · Data Visualization · Prototyping · Design Handoff</div>
         </div>
       </div>
 
-      <!-- ✏️ Replace placeholder with cover image:
-           <img src="images/ms-cover.jpg" alt="Lender Portfolio overview"> -->
       <div class="cs-hero-media reveal">
-        <div class="cs-media-inner ratio-16-9">
+        <div class="cs-media-inner bare">
           <div class="cs-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            Cover image — full portfolio overview screen
+            <a class="glightbox" href="assets/mountainseed/Example of final snapshot screen.png">
+              <img src="assets/mountainseed/Example of final snapshot screen.png" alt="Lender Portfolio Snapshot — final prototype">
+            </a>
           </div>
         </div>
-        <p class="cs-media-caption">Lender Portfolio — final prototype overview</p>
+        <p class="cs-media-caption">Lender Portfolio, Snapshot view — final prototype</p>
       </div>
 
     </div>
@@ -96,34 +97,36 @@
       <!-- ══════════════════════════════════════════════════════
            01 — CONTEXT
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
         <div class="cs-section-label">01 — Context</div>
-        <h2 class="cs-section-title">Expanding an analytics platform to reach bank lenders</h2>
+        <h2 class="cs-section-title">Extending an analytics platform to a new audience</h2>
 
         <div class="cs-prose">
           <p>
-            MountainSeed is an appraisal management and analytics platform built
-            for commercial real estate professionals. When I joined for a two-month
-            internship, the product team was planning a significant expansion:
-            extending the analytics platform to reach <strong>bank lenders</strong> —
-            a new user type with distinct workflows and expectations.
+            MountainSeed is an appraisal-management and analytics platform built for
+            commercial real estate (CRE) professionals. When I came onto the the product
+            team, a major expansion was being planned: extending the analytics platform to
+            <strong>bank lenders</strong> — a new user type with workflows, mental models,
+            and reporting needs distinct from the platform's existing appraiser audience.
           </p>
           <p>
-            The project was called the <strong>"Lender Portfolio"</strong>. The goal
-            was to give portfolio managers, credit analysts, and loan officers a
-            consolidated space to manage and analyze their collateral properties —
-            something that, until now, the platform had not offered.
+            The initiative was called the <strong>Lender Portfolio</strong>: a dedicated,
+            subscription space where portfolio managers, credit analysts, and loan officers
+            could consolidate and analyze their collateral properties. My job was to take
+            that brief from an open-ended business goal to a validated, build-ready design.
           </p>
         </div>
 
-        <div class="cs-pullquote">
-          <p>"Give lenders a consolidated space for collateral properties and the
-          data visualizations that communicate the metrics that inform strategy,
-          append reports, and support ongoing loan inquiries."</p>
+        <div class="cs-pullquote reveal">
+          <p>
+            "Give lenders a consolidated space for their collateral properties, with data
+            visualizations that communicate the metrics that inform strategy, append to
+            reports, and support ongoing loan inquiries."
+          </p>
         </div>
 
-        <div class="cs-tags">
+        <div class="cs-tags reveal">
           <span class="cs-tag">Figma</span>
           <span class="cs-tag">UX Research</span>
           <span class="cs-tag">Information Architecture</span>
@@ -139,80 +142,62 @@
       <!-- ══════════════════════════════════════════════════════
            02 — RESEARCH
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
         <div class="cs-section-label">02 — Research</div>
-        <h2 class="cs-section-title">Building fluency in a completely new domain</h2>
+        <h2 class="cs-section-title">Building fluency in an unfamiliar domain</h2>
 
         <div class="cs-prose">
           <p>
-            Walking into a Fintech company with no background in commercial real
-            estate or appraisal management meant a steep learning curve before any
-            design work could begin. Research wasn't just a phase — it was a
-            continuous thread throughout the entire project.
+            Joining a fintech team with no background in commercial real estate or appraisal
+            meant a steep learning curve before I could make sound design decisions. Rather
+            than treat research as a single phase, I approached it as a continuous thread. The 
+            goal was to reach <strong>design-ready domain fluency</strong> quickly, then keep
+            validating assumptions as the work progressed.
           </p>
           <p>
-            The first priority was establishing CRE fundamentals, with a particular
-            emphasis on the role of appraisers, appraisals, and the life cycle of a
-            commercial loan. This combined external reading with internal deep-dives
-            into historical artifacts and studies MountainSeed had already conducted.
+            I built a foundation on three fronts: <strong>external study</strong> of CRE
+            fundamentals, appraisal processes, and the commercial loan lifecycle;
+            <strong>internal deep-dives</strong> into MountainSeed's historical artifacts and
+            prior lender research; and <strong>stakeholder interviews</strong> with Product
+            Manager Rosha Caines and UX Director Bethany Stolle.
           </p>
         </div>
 
-        <ul class="cs-list">
+        <ul class="cs-list reveal">
           <li>
-            <span class="cs-list-num">1</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
-              <strong>Public CRE market reports & appraisal documents</strong>
-              Commercial and residential appraisals, market reports, and industry
-              literature to establish foundational CRE context.
+              <strong>Public CRE market reports &amp; appraisal documents</strong>
+              Commercial and residential appraisals, market reports, and industry literature
+              to establish foundational CRE context and vocabulary.
             </div>
           </li>
           <li>
-            <span class="cs-list-num">2</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
-              <strong>Internal interview recordings & usability test transcripts</strong>
-              Prior sessions conducted by the analytics team that surfaced lender
-              behaviors, pain points, and mental models.
+              <strong>Internal interview recordings &amp; usability transcripts</strong>
+              Prior sessions run by the analytics team that surfaced lender behaviors, pain
+              points, and mental models.
             </div>
           </li>
           <li>
-            <span class="cs-list-num">3</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
               <strong>Internal lender study reports</strong>
-              Research compiled by the team on the lender user type — attitudes,
-              end goals, and behaviors relevant to product design.
+              Analytics team's research on the lender user type — attitudes, end goals, and behaviors
+              relevant to the product.
             </div>
           </li>
           <li>
-            <span class="cs-list-num">4</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
-              <strong>Meeting with Product Manager Rosha Caines</strong>
-              A structured session to learn the evolution of analytics at
-              MountainSeed, the lender user type, and the current product vision —
-              prepared with targeted questions in advance.
-            </div>
-          </li>
-          <li>
-            <span class="cs-list-num">5</span>
-            <div class="cs-list-text">
-              <strong>Lender role breakdown from mentor Bethany Stolle</strong>
-              A comprehensive reference document on bank lender roles that informed
-              design decisions throughout the entire project lifecycle.
+              <strong>Stakeholder interviews — PM &amp; UX Director</strong>
+              Structured sessions, prepared with targeted questions, to learn the platform's
+              evolution, business requirements, the lender user type, and the current product vision.
             </div>
           </li>
         </ul>
-
-        <!-- ✏️ Replace placeholder with research artifacts image -->
-        <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Research artifacts — notes, source materials, or affinity map
-            </div>
-          </div>
-          <p class="cs-media-caption">Research phase — source materials and internal study documents</p>
-        </div>
 
       </section>
 
@@ -220,249 +205,582 @@
       <!-- ══════════════════════════════════════════════════════
            03 — DEFINE
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
         <div class="cs-section-label">03 — Define</div>
-        <h2 class="cs-section-title">Scoping the feature and selecting target users</h2>
+        <h2 class="cs-section-title">Scoping the feature and choosing target users</h2>
 
         <div class="cs-prose">
           <p>
-            Working with Bethany and Rosha, we defined the feature requirements,
-            identified key workflows, and decided which lender roles to target first.
-            Two roles were selected: <strong>Credit Analysts</strong> as primary,
-            and <strong>Loan Officers / Relationship Bankers</strong> as secondary.
+            Drawing on the team's existing lender research, we narrowed a broad audience to
+            two roles: <strong>Credit Analysts</strong> as primary, and
+            <strong>Loan Officers / Relationship Bankers</strong> as secondary.
           </p>
           <p>
-            Research pointed to three things the portfolio tab needed to provide:
-            <strong>comparative market analysis</strong>,
-            <strong>collateral properties analysis</strong>, and
-            <strong>property organization and accessibility</strong>.
-            Seven use-case scenarios were written — two designated as key — giving
-            the team a narrative grounding for every major design decision.
+            Credit analysts were the priority for two reasons. Their responsibilities overlap
+            with appraisers, so they could reuse tools MountainSeed had already
+            built. Additionally, the property metrics they need would let the company
+            <strong>utilize more proprietary data</strong>, opening a path to
+            functionality the platform hadn't yet considered. Loan officers had narrower,
+            simpler needs, so designating them secondary let us build faithfully
+            for both without overextending the team.
+          </p>
+          <p>
+            From there I ran initial explorations independently, then worked with Bethany and
+            Rosha to lock the feature requirements, data requirements, and key workflows. I
+            wrote <strong>seven use-case scenarios — two designated as "key"</strong> — to
+            give every major design decision a narrative grounding in a real user goal.
           </p>
         </div>
 
-        <div class="cs-pullquote">
-          <p>"Credit analysts were primary — their workflows aligned most closely
-          with existing appraiser tools and opened up MountainSeed's assets
-          in an original, lucrative way."</p>
+        <div class="cs-pullquote reveal">
+          <p>"Credit analysts were primary — their workflows aligned most closely with
+          existing appraiser tools, and they unlocked MountainSeed's proprietary data in a
+          new, monetizable way."</p>
         </div>
 
-        <ul class="cs-list">
+        <div class="cs-prose">
+          <p>
+            Our work in this "define" phase revealed three services the portfolio needed to deliver:
+          </p>
+        </div>
+
+        <ul class="cs-list reveal">
           <li>
-            <span class="cs-list-num">A</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
               <strong>Comparative Market Analysis</strong>
-              Visualizations generated from MountainSeed's proprietary data,
-              showing collateral properties in the context of surrounding market
-              activity — providing insight into trends, density, and relative position.
+              Visualizations built from MountainSeed's proprietary data that place a bank's
+              collateral properties in the context of surrounding market activity — surfacing
+              trends, density, and relative position (benchmarking).
             </div>
           </li>
           <li>
-            <span class="cs-list-num">B</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
               <strong>Collateral Properties Analysis</strong>
-              Portfolio-level metrics and charts providing insight into a bank's
-              own property performance — informing strategy and supporting ongoing
-              loan inquiries.
+              Portfolio-level metrics and charts that reveal a bank's own property
+              performance — informing strategy and supporting ongoing loan inquiries.
             </div>
           </li>
           <li>
-            <span class="cs-list-num">C</span>
+            <span class="cs-list-num">–</span>
             <div class="cs-list-text">
-              <strong>Property Organization & Accessibility</strong>
-              A searchable, filterable, sortable property system giving lenders fast,
-              precise discovery and access to any collateral record.
+              <strong>Property Organization &amp; Accessibility</strong>
+              A searchable, filterable, sortable property system giving lenders fast, precise
+              access to any collateral record.
             </div>
           </li>
         </ul>
-
-        <!-- ✏️ Replace placeholder with flowchart or scenario doc image -->
-        <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Use-case scenarios / flowcharts
-            </div>
-          </div>
-          <p class="cs-media-caption">Use-case scenario writing and key workflow flowcharts</p>
-        </div>
-
       </section>
 
 
       <!-- ══════════════════════════════════════════════════════
            04 — DESIGN
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
         <div class="cs-section-label">04 — Design</div>
-        <h2 class="cs-section-title">From hand-drawn sketches to high-fidelity prototype</h2>
+        <h2 class="cs-section-title">From hand-drawn flows to a build-ready prototype</h2>
 
         <div class="cs-prose">
           <p>
-            Design began with <strong>hand-drawn sketches</strong> — a deliberate
-            choice to keep early exploration fast and low-commitment. Moving into
-            Figma, the first wireframe iteration kept fidelity low while referencing
-            MountainSeed's existing element styles to maintain brand consistency.
-          </p>
-          <p>
-            Weekly syncs with the analytics team — spanning Technology, Data Ops,
-            and Project Management — kept design tightly coupled to what was
-            feasible. The final prototype brought together confirmed visualizations,
-            an updated properties table, a <strong>record flagging system</strong>
-            with a side-sheet ticket queue, and an <strong>inquiry request
-            workflow</strong> with error-state messaging.
+            With our scenarios in place, I treated each as a narrative — a user's goal, needs,
+            and behavior told in the context of the product — and translated the two key
+            scenarios (plus three validation scenarios) into <strong>flowcharts</strong>,
+            iterating on them with Bethany and Rosha. Once the flows were solid, I moved into
+            UI, starting with <strong>hand-drawn sketches</strong> to explore information
+            architecture and layout cheaply before comitting resources.
           </p>
         </div>
 
-        <div class="cs-media-grid cols-2 reveal">
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Hand-drawn sketch — early layout exploration
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Lo-fi wireframe — first Figma iteration
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="cs-media-caption">Hand-drawn sketch (left) · Lo-fi wireframe (right)</p>
-
-        <!-- ✏️ Replace placeholder with final hi-fi prototype screenshot -->
         <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Final hi-fi prototype — full portfolio screen
-            </div>
+          <div id="no-border" class="cs-media-inner bare">
+            <a class="glightbox" href="assets/mountainseed/key scenario and flowchart.png">
+              <img src="assets/mountainseed/key scenario and flowchart.png" alt="Key use-case scenario and accompanying flowchart">
+            </a>
           </div>
-          <p class="cs-media-caption">Final high-fidelity prototype — Lender Portfolio overview</p>
+          <p class="cs-media-caption">A key use-case scenario paired with its workflow flowchart</p>
+        </div>
+
+        <!-- ── FIRST ITERATION ─────────────────────────────────── -->
+        <h3 class="section-subtitle">One workspace, three services</h3>
+        <div class="cs-prose">
+          <p>
+            The first iteration tested whether all three services could live on a single
+            portfolio page. Kept deliberately low-fidelity — but styled to MountainSeed's
+            existing visual language to keep brand identity legible — it let users enter the
+            portfolio to a map of their collateral properties, an analysis area, and a
+            consolidated properties list below.
+          </p>
+          <p>
+            To shorten the learning curve, I borrowed interaction patterns from Microsoft
+            Excel — applying <strong>Jakob's Law</strong> (users carry expectations from the
+            tools they already live in) so analysts felt familiarity to the most prominent
+            data analysis tool.
+          </p>
+        </div>
+
+        <!--  try text wrapping with the content below -->
+        <div class="cs-split-grid">
+          <div class="cs-prose">
+            <p>
+              The map and analysis area sat in immediate view, since lenders want a snapshot
+              of performance and value first. The interactive map let them move across
+              geographic levels and filter; the analysis area displayed portfolio-driven
+              visualizations and metrics compartmentalized by data type.
+            </p>
+            <p>
+              <strong>Why compartmentalize by data type?</strong><br>
+              Our research showed each institution runs its own lending and acquisition 
+              strategy, so a one-size-fits-all dashboard couldn't deliver uniform value.
+              Through a tabbed interface, users could move between data types, pairing 
+              one or two visualizations with supporting metrics for each. I produced two 
+               options for the analysis area to compare information architecture (IA).
+            </p>
+          </div>
+          <div class="cs-split-media reveal">
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/Lender Dashboard/wireframes v1/fullview.png">
+                <img src="assets/mountainseed/Lender Dashboard/wireframes v1/fullview.png" alt="First iteration — full portfolio view">
+              </a>
+            </div>
+            <p class="cs-media-caption">Full portfolio view: map, analysis, and properties in one page</p>
+          </div>
         </div>
 
         <div class="cs-media-grid cols-2 reveal">
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                Properties — default table view
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/Lender Dashboard/wireframes v1/Lender Dashboard/wireframes v1/lender dashboard/wireframes v1/layout 3.png">
+                <img src="assets/mountainseed/Lender Dashboard/wireframes v1/Lender Dashboard/wireframes v1/lender dashboard/wireframes v1/layout 3.png" alt="Analysis area — information architecture option A">
+              </a>
             </div>
+            <p class="cs-media-caption">Analysis area — IA option A</p>
           </div>
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Properties — card view
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/Lender Dashboard/wireframes v1/Lender Dashboard/wireframes v1/layout 2.png">
+                <img src="assets/mountainseed/Lender Dashboard/wireframes v1/Lender Dashboard/wireframes v1/layout 2.png" alt="Analysis area — information architecture option B">
+              </a>
             </div>
+            <p class="cs-media-caption">Analysis area — IA option B</p>
           </div>
         </div>
-        <p class="cs-media-caption">Default table view (left) · Card view alternative (right)</p>
-
-      </section>
-
-
-      <!-- ══════════════════════════════════════════════════════
-           05 — DATA VISUALIZATION
-           ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
-
-        <div class="cs-section-label">05 — Data Visualization</div>
-        <h2 class="cs-section-title">A design thread that ran the full project lifecycle</h2>
 
         <div class="cs-prose">
           <p>
-            Data visualization wasn't a single deliverable — it was an ongoing
-            problem that evolved as the team learned more about what was technically
-            possible. Defining the right charts required fluency in three overlapping
-            areas: <strong>data analytics principles</strong>,
-            <strong>visualization tool capabilities</strong>, and
-            <strong>MountainSeed's available property data</strong>.
+            Consolidated properties lived below the dashboard with a card / list
+            toggle. Because this area needed less functionality at this stage, I kept it a
+            lower priority and concentrated exploration on the dashboard and its
+            visualizations.
+          </p>
+        </div>
+
+        <!-- ── SECOND ITERATION ────────────────────────────────── -->
+        <h2 class="section-subtitle">Separating the workspaces</h2>
+
+        <div class="cs-prose">
+          <p>
+            Holding all the workspaces on one page created competing demands on the
+            user's attention. In the second iteration I split them into a
+            <strong>tabbed interface</strong> to reduce cognitive load, and introduced 
+            a <strong>local navigation</strong> menu so users
+            could control which insights were in view — freeing the dashboard to show deeper,
+            more relevant visuals.
           </p>
           <p>
-            The conclusion was a set of visualizations illustrating
-            <strong>trends</strong>, <strong>distribution</strong>, and
-            <strong>density</strong> — each tied directly to a data type
-            MountainSeed could reliably extract.
+            I also introduced <strong>market comparisons</strong> directly into the
+            visualizations (benchmarking portfolio against market), and added properties
+            actions like adding a property and viewing comparables. Card templates were still
+            on the backlog, so those screens used placeholder content.
           </p>
         </div>
 
-        <div class="cs-pullquote">
-          <p>"The challenge wasn't what to visualize — it was identifying which
-          visualizations could be faithfully produced with our data and our tools,
-          without overpromising."</p>
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v2/ledner-dash-wireframes-2.png">
+                <img src="assets/mountainseed/wireframes v2/ledner-dash-wireframes-2.png" alt="Second iteration — analysis workspace in a tabbed interface">
+              </a>
+            </div>
+            <p class="cs-media-caption">Analysis workspace, now its own tab</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v2/properties-wireframes-2.png">
+                <img src="assets/mountainseed/wireframes v2/properties-wireframes-2.png" alt="Second iteration — properties workspace">
+              </a>
+            </div>
+            <p class="cs-media-caption">Properties workspace</p>
+          </div>
         </div>
 
-        <div class="cs-media-grid cols-3 reveal">
+        <div class="cs-prose">
+          <p>
+            I also designed the export flow, with journeys originating from both areas. I set
+            the map to be <strong>hidden by default</strong> and opened on demand into a
+            split-screen via a button — applying <strong>progressive disclosure</strong> to
+            prioritize core tasks like exporting and shorten the process of common workflows.
+          </p>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Trend visualization
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v2/lender-dash-map-toggle-wireframes-2.png">
+                <img src="assets/mountainseed/wireframes v2/lender-dash-map-toggle-wireframes-2.png" alt="Map hidden by default, revealed via toggle into a split-screen">
+              </a>
             </div>
+            <p class="cs-media-caption">Map hidden by default, revealed as a split-screen on demand</p>
           </div>
           <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Distribution chart
-              </div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v2/properties-wireframes-2.png">
+                <img src="assets/mountainseed/wireframes v2/properties-wireframes-2.png" alt="Export flow example">
+              </a>
             </div>
+            <p class="cs-media-caption">Export flow — origin point in the properties area</p>
           </div>
-          <div>
-            <div class="cs-media-inner ratio-4-3">
-              <div class="cs-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                Geo density map
+        </div>
+
+        <!-- ── THIRD ITERATION ─────────────────────────────────── -->
+        <h2 class="section-subtitle">Building analytical depth</h2>
+
+        <div class="cs-prose">
+          <p>
+            With the structure settled, I emphasized work on
+            <strong>analysis workspace</strong> — the analysts' primary space, home to the
+            most complex tasks and the least overlap with other roles, which made it our
+            highest priority for upcoming usability testing. I deferred the properties and 
+            snapshot workspaces, keeping their screens low-fidelity rather than stopping 
+            work on them entirely.
+          </p>
+          <p>
+            Analysts need to run calculations, read visuals to inform strategy, and
+            investigate the underlying data. That called for a workspace built around a
+            <strong>primary visualization</strong> with controls to enrich it, supported by
+            data augmentation and comparative layering.
+          </p>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            Data visualization was never a single deliverable — it was an ongoing problem that
+            shifted as the team learned what was technically possible. Getting it right meant
+            working across three overlapping constraints: <strong>data-analytics
+            principles</strong>, <strong>visualization-tool capabilities</strong>, and
+            <strong>MountainSeed's actual property data</strong>. I held recurring sessions
+            with senior data analyst <strong>Jake Gadbury</strong> to ground my research in the 
+            company's data and tools, and to review upcoming
+            visualizations before I presented them in our weekly syncs.
+          </p>
+        </div>
+
+        <div class="cs-pullquote reveal">
+          <p>"The challenge wasn't deciding what to visualize — it was identifying which
+          visualizations we could faithfully produce with our data and our tools, without
+          overpromising."</p>
+        </div>
+
+        <div class="cs-split-grid">
+          <div class="cs-prose">
+            <p>
+              I added <strong>supplemental visualizations</strong> to give the primary chart
+              context. A trend of cap rates over time, for instance, becomes more credible when
+               the user can also see average Net Operating Income (NOI) and a comparison of
+               Market Sales Price vs. As-Is Value across the same period.
+            </p>
+            <p>
+              Research into visualization technique also revealed that analysts read charts through
+              three lenses: <strong>assessing risk</strong>, <strong>reading trends</strong>,
+              and <strong>understanding distribution</strong>. I chose an optimal chart type
+              for each lens and added a <strong>tabbed layer</strong> to switch between them.
+            </p>
+          </div>
+          <div class="cs-split-media reveal">
+            <div>
+              <div class="cs-media-inner bare">
+                <a class="glightbox" href="assets/mountainseed/wireframes v3/data-analysis-trends-wireframes-v3.png">
+                  <img src="assets/mountainseed/wireframes v3/data-analysis-trends-wireframes-v3.png" alt="Third iteration — analysis workspace, trends view">
+                </a>
               </div>
+              <p class="cs-media-caption">Primary visualization with supplemental context charts</p>
             </div>
           </div>
         </div>
-        <p class="cs-media-caption">Visualization explorations — trend, distribution, and geo density</p>
+
+        <!-- ── FOURTH ITERATION ────────────────────────────────── -->
+        <h2 class="section-subtitle">Validating with users</h2>
+        <div class="cs-prose">
+          <p>
+            The next iterations were shaped by usability testing. The headline finding: clients saw
+            immediate value in the <strong>three-workspace model</strong>. An export-ready
+            dashboard made it easy to deliver synthesized insight to executives; a
+            consolidated properties area streamlined management and centralized
+            property-level tasks like error reporting, detail edits, and running comparables.
+          </p>
+        </div>
+
+        <div class="cs-honest reveal">
+          <div class="cs-honest-label">What testing couldn't tell us</div>
+          <p>
+            No risk analysts attended our sessions, so the <strong>Risk</strong> view went
+            largely unvalidated — a meaningful gap, since that SME feedback would have been
+            the most valuable input on the workspace's most complex view. Executives and
+            portfolio managers who did attend noted the risk tooling would be valuable
+            <strong>if it could provide projections</strong>.
+          </p>
+          <p>
+            Rather than cut the feature from a lack of evidence, we decided the analysis workspace
+             still held clear value for analysts and could be validated in a follow-up round with 
+             the right participants.
+          </p>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            In the analysis workspace I built out a <strong>Chart Actions</strong> panel for
+            richer data augmentation, added a toggle to fitler proeprty type within the visuals, and introduced an
+            <strong>"About Visual"</strong> panel describing each chart. Placing that
+            description directly beside the chart applies the
+            <strong>spatial-contiguity principle</strong> — related information sits together,
+            so comprehension doesn't depend on memory.
+          </p>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v4/data-analysis-perfromance-wireframes-4.png">
+                <img src="assets/mountainseed/wireframes v4/data-analysis-perfromance-wireframes-4.png" alt="Fourth iteration — analysis workspace, Performance tab">
+              </a>
+            </div>
+            <p class="cs-media-caption">Performance view, with About Visual and Chart Actions</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v4/data-analysis-risk-wireframes-4.png">
+                <img src="assets/mountainseed/wireframes v4/data-analysis-risk-wireframes-4.png" alt="Fourth iteration — analysis workspace, Risk tab">
+              </a>
+            </div>
+            <p class="cs-media-caption">Risk view, the same chart read through a different lens</p>
+          </div>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            Testing also clarified what the <strong>Snapshot</strong> workspace should
+            communicate: visuals for portfolio diversity, composition, and perfromance. 
+            I added a table of insights broken out <strong>by property type</strong>, 
+            since metrics across types aren't comparable and shouldn't be read against 
+            one another. Because Snapshot's highest priority task is fast, simple export, 
+            I limited its filtering to geography and time frame — the only two
+            controls users need to set how broad or narrow a view they want.
+          </p>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v4/lender-dash-layout-1-wireframes-4.jpg">
+                <img src="assets/mountainseed/wireframes v4/lender-dash-layout-1-wireframes-4.jpg" alt="Fourth iteration — Snapshot, layout option 1">
+              </a>
+            </div>
+            <p class="cs-media-caption">Snapshot, layout A: Composition over Market Comparisons</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/wireframes v4/ledner-dash-layout-2-wireframes-4.jpg">
+                <img src="assets/mountainseed/wireframes v4/ledner-dash-layout-2-wireframes-4.jpg" alt="Fourth iteration — Snapshot, layout option 2">
+              </a>
+            </div>
+            <p class="cs-media-caption">Snapshot, layout B: Composition beside Performance &amp; Risk</p>
+          </div>
+        </div>
+
+        <div class="cs-prose">
+          <p>
+            The <strong>Properties</strong> workspace already handled most workflows, but
+            testing surfaced a new opportunity: <strong>error / ticket handling</strong>.
+            Users told us property details routinely need to be adjusted, removed, or added
+            to. I designed a <strong>side sheet</strong> ticket queue with three statuses —
+            Pending, In Review, and Closed — so users could review active and past tickets,
+            and added a flag affordance to mark any property attached to a ticket. Charts also
+            gained a <strong>drill-down</strong>: selecting "See Property Data" opens the exact
+            records behind a visualization. With this expedited flow, users could easily gather 
+            the property data informing a visual.
+          </p>
+        </div>
+
+        <div class="cs-media reveal">
+          <div class="cs-media-inner bare">
+            <a class="glightbox" href="assets/mountainseed/wireframes v4/properties-modal-wireframes-4.png">
+              <img src="assets/mountainseed/wireframes v4/properties-modal-wireframes-4.png" alt="Fourth iteration — chart drill-down modal showing the underlying property records">
+            </a>
+          </div>
+          <p class="cs-media-caption">Drill-down from a chart to its underlying records, with bulk actions</p>
+        </div>
+
+        <!-- ── FINAL PROTOTYPE ─────────────────────────────────── -->
+        <h2 class="section-subtitle">The final prototype — designing for what could ship</h2>
+        <div class="cs-prose">
+          <p>
+            Heading toward a first release, weekly syncs with the analytics team — Technology,
+            Data Ops, and Project Management — made one constraint clear: the visualization
+            technology and data pipeline needed more time to mature. So I designed the v1
+            release to the reality of what could ship, <strong>scoping back the dynamic
+            visualization features</strong> and deferring the ticketing queue to a later
+            release, since it had to connect to existing systems.
+          </p>
+          <p>
+            That made the analysis workspace more <strong>static</strong>; instead of
+            customizing visuals and switching through a tabbed interface, users see a visual
+            for each data type on a single page. Showing one visual per data type kept the
+            space dense, but it solved an inclusivity problem — every client, whatever their
+            strategy, finds the view they rely on without having to configure it.
+          </p>
+          <p>
+            I also designed a <strong>pivot-table</strong> view for users who prefer reading
+            metrics as a table over charts. To inform how analysts traverse and read pivots, I
+            drew on AWS QuickSight's documentation on visual types; we didn't adopt QuickSight,
+            but it let me design pivot tables our existing <strong>Tableau</strong> tooling
+            could build.
+          </p>
+          <p>
+            Finally, I brought the map back to the top of the analysis view alongside a summary
+            of the <strong>active parameters</strong> — a "Dashboard Overview" — so the
+            filters applied to the visuals below are always visible. Now that the visuals were
+            static, the workspace could support export like Snapshot, and exported material
+            needed to communciate the variables affecting the output.
+          </p>
+        </div>
+
+        <div class="cs-media reveal">
+          <div class="cs-media-inner bare">
+            <a class="glightbox" href="assets/mountainseed/final prototype/snapshot-tooltip-final-prototype.png">
+              <img src="assets/mountainseed/final prototype/snapshot-tooltip-final-prototype.png" alt="Final prototype — Snapshot workspace">
+            </a>
+          </div>
+          <p class="cs-media-caption">Final prototype — Snapshot: composition, location, performance &amp; risk, and property-type insights</p>
+        </div>
+
+        <div class="cs-media reveal">
+          <div class="cs-media-inner bare">
+            <a class="glightbox" href="assets/mountainseed/final prototype/analysis-trends-final-prototype.png">
+              <img src="assets/mountainseed/final prototype/analysis-trends-final-prototype.png" alt="Final prototype — analysis workspace, Trends view with Dashboard Overview">
+            </a>
+          </div>
+          <p class="cs-media-caption">Final prototype — Analysis: a Dashboard Overview surfaces active parameters above portfolio-vs-market visuals</p>
+        </div>
+
+        <div class="cs-media reveal">
+          <div class="cs-media-inner bare">
+            <a class="glightbox" href="assets/mountainseed/final prototype/analysis-pivot-table-final-prototype.png">
+              <img src="assets/mountainseed/final prototype/analysis-pivot-table-final-prototype.png" alt="Final prototype — analysis workspace, pivot-table view">
+            </a>
+          </div>
+          <p class="cs-media-caption">Final prototype — the Property Data pivot table, a table-first alternative to the charts</p>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/final prototype/proeprties-list-view-final-prototype.png">
+                <img src="assets/mountainseed/final prototype/proeprties-list-view-final-prototype.png" alt="Final prototype — properties list view">
+              </a>
+            </div>
+            <p class="cs-media-caption">Properties — list view, with expandable rows and per-row actions</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/final prototype/properties-card-view-final-prototype.png">
+                <img src="assets/mountainseed/final prototype/properties-card-view-final-prototype.png" alt="Final prototype — properties card view with map">
+              </a>
+            </div>
+            <p class="cs-media-caption">Properties — card view paired with the location map</p>
+          </div>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/final prototype/properties-report-issue-modal.png">
+                <img src="assets/mountainseed/final prototype/properties-report-issue-modal.png" alt="Final prototype — Report Issue modal">
+              </a>
+            </div>
+            <p class="cs-media-caption">Report Issue — selected properties carried into a structured report with a clear reason</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/final prototype/proeprties-ticket-queue.png">
+                <img src="assets/mountainseed/final prototype/proeprties-ticket-queue.png" alt="Final prototype — Reported Issues ticket queue side sheet">
+              </a>
+            </div>
+            <p class="cs-media-caption">Ticket queue side sheet — active and closed tickets across Pending, In Review, and Closed</p>
+          </div>
+        </div>
 
       </section>
 
 
       <!-- ══════════════════════════════════════════════════════
-           06 — HANDOFF & SUPPORT
+           05 — HANDOFF & SUPPORT
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
-        <div class="cs-section-label">06 — Handoff & Support</div>
+        <div class="cs-section-label">05 — Handoff &amp; Support</div>
         <h2 class="cs-section-title">From prototype to production</h2>
 
         <div class="cs-prose">
           <p>
-            Once prototype screens were finalized, the role shifted to supporting
-            development — providing revised specs when element dimensions or spacing
-            needed adjustment, and rigorously testing implemented pages as soon as
-            they were available.
+            Once the prototype screens were final, my role shifted to supporting development:
+            providing revised specs when dimensions or spacing needed adjustment, and testing
+            implemented pages as soon as they were available.
           </p>
           <p>
-            QA findings were documented in structured reports — organized by area,
-            date, and sub-section — with explicit notes even for areas that passed
-            review, to demonstrate thoroughness to the project manager.
+            I documented QA findings in structured reports — organized by area, date, and
+            sub-section — and noted areas that passed review as well as those that didn't, so
+            the project manager had a complete, auditable record of what had been checked.
           </p>
         </div>
 
-        <!-- ✏️ Replace placeholder with redline / handoff spec image -->
-        <div class="cs-media reveal">
-          <div class="cs-media-inner ratio-16-9">
-            <div class="cs-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Redline / spec handoff or implemented page screenshot
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/handoff/Data Analysis Redlines.png">
+                <img src="assets/mountainseed/handoff/Data Analysis Redlines.png" alt="data analysis redlines">
+              </a>
             </div>
+            <p class="cs-media-caption">Analysis workspace - redlining and sizing</p>
           </div>
-          <p class="cs-media-caption">Design handoff — redline annotations and implementation review</p>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/handoff/Tool Tip Usage.png">
+                <img src="assets/mountainseed/handoff/Tool Tip Usage.png" alt="tool tip usage">
+              </a>
+            </div>
+            <p class="cs-media-caption">Tool Tips - usage and UX notes </p>
+          </div>
+        </div>
+
+        <div class="cs-media-grid cols-2 reveal">
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/handoff/UX-notes-property-data-tables.png">
+                <img src="assets/mountainseed/handoff/UX-notes-property-data-tables.png" alt="Analysis workspace - property data tables UX notes">
+              </a>
+            </div>
+            <p class="cs-media-caption">Analysis workspace - property data tables UX notes</p>
+          </div>
+          <div>
+            <div class="cs-media-inner bare">
+              <a class="glightbox" href="assets/mountainseed/handoff/property-data-tables-redlining.png">
+                <img src="assets/mountainseed/handoff/property-data-tables-redlining.png" alt="Analysis workspace - property data tables redlining">
+              </a>
+            </div>
+            <p class="cs-media-caption">Analysis workspace - proeprty data tables redlining</p>
+          </div>
         </div>
 
       </section>
@@ -471,27 +789,53 @@
       <!-- ══════════════════════════════════════════════════════
            REFLECTIONS
            ══════════════════════════════════════════════════════ -->
-      <section class="cs-section reveal">
+      <section class="cs-section">
 
         <div class="cs-section-label">Reflections</div>
         <h2 class="cs-section-title">What I took away</h2>
 
-        <div class="cs-prose">
-          <p>
-            This internship compressed a full product design lifecycle into two
-            months — research, definition, ideation, wireframing, hi-fi design,
-            prototyping, and production support. Working in a fast-moving Fintech
-            environment with a cross-functional team taught me how to stay grounded
-            in user needs while continuously adapting to technical and business constraints.
-          </p>
-          <p>
-            The most valuable skill I built was knowing when to push for clarity
-            and when to design for ambiguity — particularly around data visualization,
-            where the gap between what's desirable and what's producible is
-            constantly shifting.
-          </p>
-          <!-- ✏️ Add a personal reflection sentence or two here -->
-        </div>
+        <ul class="cs-list reveal">
+          <li>
+            <span class="cs-list-num">01</span>
+            <div class="cs-list-text">
+              <strong>Design for the gap between desirable and producible.</strong>
+              The hardest calls were in data visualization, where what's desired and
+              what's acheiveable with our data tooling kept shifting. Learning when to
+              push for clarity and when to design for ambiguity was the most valuable skill I
+              built.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">02</span>
+            <div class="cs-list-text">
+              <strong>A full product lifecycle, end to end.</strong>
+              Research, definition, IA, wireframing, hi-fi UI, prototyping, and production
+              support — in a fast-moving fintech environment, with a cross-functional team —
+              taught me to stay grounded in user needs while adapting to technical and
+              business constraints.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">03</span>
+            <div class="cs-list-text">
+              <strong>Absence of evidence isn't evidence of absence.</strong>
+              When no risk analysts joined testing, the disciplined move was to name the gap
+              and plan to validate later — not to quietly cut the feature or pretend it was
+              proven. Reality presents challenges that you have to identify and address without
+              letting halt progress.
+            </div>
+          </li>
+          <li>
+            <span class="cs-list-num">04</span>
+            <div class="cs-list-text">
+              <strong>Team chemistry shapes the work.</strong>
+              Cohesion didn't just affect morale — it influenced what got made. Being able to
+              take risks and make mistakes without worrying about perception is what drives a
+              team's efficiency and invention. As my first role out of college, that balance
+              is something I'm grateful for.
+            </div>
+          </li>
+        </ul>
 
       </section>
 
@@ -502,7 +846,6 @@
 
   <!-- ============================================================
        CASE STUDY FOOTER NAV
-       ✏️ Update hrefs and titles as your project set grows
        ============================================================ -->
   <div class="container">
     <div class="cs-footer-nav reveal">
@@ -523,12 +866,33 @@
 
   <footer>
     <div class="container">
-      <!-- ✏️ Update your name -->
-      <p>© 2025 Your Name. Designed & built by me.</p>
+      <p>© 2025 Richy Camarillo. Designed &amp; built by me.</p>
     </div>
   </footer>
 
   <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    GLightbox();
+
+    document.querySelectorAll('.cs-carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('.cs-carousel-slide');
+      const dots   = carousel.querySelectorAll('.cs-carousel-dot');
+      const prev   = carousel.querySelector('.cs-carousel-prev');
+      const next   = carousel.querySelector('.cs-carousel-next');
+      let current  = 0;
+
+      function goTo(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle('active', i === current));
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      prev.addEventListener('click', e => { e.preventDefault(); goTo(current - 1); });
+      next.addEventListener('click', e => { e.preventDefault(); goTo(current + 1); });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    });
+  </script>
 
 </body>
 </html>
