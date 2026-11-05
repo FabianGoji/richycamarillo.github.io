@@ -310,6 +310,16 @@ nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-8px) rot
   color: var(--color-accent);
 }
 
+/* Second line of the hero headline, smaller and lighter than the main line */
+.hero-tagline {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-top: 14px;
+}
+
 .hero-sub {
   font-size: 1.05rem;
   color: var(--color-muted);
@@ -522,6 +532,19 @@ section { padding: var(--section-gap) 0; }
   color: var(--color-muted);
   margin-bottom: 20px;
   line-height: 1.65;
+}
+
+.in-progress {
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  display: inline-flex;
+  align-items: center bottom;
+  gap: 6px;
+  transition: gap 0.2s;
 }
 
 .project-link {
@@ -1217,7 +1240,7 @@ footer {
   gap: 24px;
 }
 .cs-footer-nav-item        { display: flex; flex-direction: column; gap: 8px; }
-.cs-footer-nav-item.next   { text-align: right; align-items: flex-end; }
+.cs-footer-nav-item.next   { grid-column: 2; text-align: right; align-items: flex-end; }
 
 .cs-footer-label {
   font-size: 0.7rem;
@@ -1329,5 +1352,96 @@ footer {
 
   /* Stack footer nav */
   .cs-footer-nav { grid-template-columns: 1fr; }
-  .cs-footer-nav-item.next { text-align: left; align-items: flex-start; }
+  .cs-footer-nav-item.next { grid-column: auto; text-align: left; align-items: flex-start; }
+}
+
+
+/* ================================================================
+   11. TECHNICAL PROJECT PAGES — atlas.html, travel-router.html,
+       web-scraper.html (in-testing additions)
+================================================================ */
+
+/* Bulleted lists inside prose (next steps, etc.) */
+.cs-prose ul      { padding-left: 1.25em; }
+.cs-prose li      { margin-bottom: 8px; }
+
+/* Individual / Collaborative label in the hero meta row */
+.type-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Placeholder image tiles — swap the inner div for <a class="glightbox"><img></a> */
+.cs-media-inner.placeholder {
+  aspect-ratio: 4 / 3;
+  background: var(--color-tag-bg);
+}
+
+/* Project card thumbnail with no image yet */
+.thumb-placeholder {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-dark);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.thumb-placeholder svg { width: 36px; height: 36px; opacity: 0.6; }
+
+/* Terminal-style window for diagrams and pipeline topologies */
+.cs-window {
+  margin: 36px 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-dark);
+  overflow: hidden;
+}
+.cs-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-muted);
+}
+.cs-window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-muted);
+}
+.cs-window-dot:first-child { background: var(--color-accent); }
+.cs-window-title {
+  margin-left: 8px;
+  font-size: 0.75rem;
+  color: var(--color-surface);
+  letter-spacing: 0.04em;
+}
+.cs-window pre {
+  margin: 0;
+  padding: 22px 24px;
+  overflow-x: auto;
+  font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--color-bg);
+}
+.cs-window pre .hl { color: var(--color-accent); }
+
+/* Inline code (file names, commands) */
+.cs-prose code,
+.cs-list-text code {
+  font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: 0.88em;
 }
